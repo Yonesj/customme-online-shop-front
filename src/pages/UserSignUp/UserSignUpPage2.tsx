@@ -1,10 +1,9 @@
 import { type JSX } from "react";
+import styles from "./UserSignUp.module.css";
 
-import "./UserSignUp.css";
-
-import Header from "../../components/Header.tsx";
+import Header from "../../components/Header";
 import Stepper from "../../components/Stepper";
-import Footer from "../../components/Footer.tsx";
+import Footer from "../../components/Footer";
 
 import Step1 from "../../assets/icons/stepper/user.svg?react";
 import Step2 from "../../assets/icons/stepper/call.svg?react";
@@ -25,44 +24,44 @@ function UserSignUp(): JSX.Element {
 
         <h2 className="heading-6">فرم ثبت اطلاعات</h2>
 
-        <div className="form-section">
-          <form className="form">
-            <div className="form-group">
+        <div className={styles["form-section"]}>
+          <form className={styles.form}>
+            <div className={styles["form-group"]}>
               <label className="body-4">شماره موبایل</label>
               <input className="body-5" type="text" name="phone_number" />
             </div>
 
-            <div className="form-group">
+            <div className={styles["form-group"]}>
               <label className="body-4">شماره تلفن (همراه با کد شهر)</label>
               <input className="body-5" type="text" name="home_number" />
             </div>
 
-            <div className="form-group">
+            <div className={styles["form-group"]}>
               <label className="body-4">استان</label>
               <select className="body-5" name="state">
                 <option>تهران</option>
               </select>
             </div>
 
-            <div className="form-group">
+            <div className={styles["form-group"]}>
               <label className="body-4">شهر</label>
               <select className="body-5" name="town">
                 <option>تهران</option>
               </select>
             </div>
 
-            <div className="form-group">
+            <div className={styles["form-group"]}>
               <label className="body-4">کد پستی</label>
               <input className="body-5" type="text" name="post" />
             </div>
 
-            <div className="form-group address">
+            <div className={`${styles["form-group"]} ${styles.address}`}>
               <label className="body-4">آدرس کامل</label>
               <input className="body-5" type="text" name="address" />
             </div>
 
-            <div className="form-footer">
-              <button class="button-2" type="submit">
+            <div className={styles["form-footer"]}>
+              <button className="button-2" type="submit">
                 ثبت اطلاعات
               </button>
             </div>
