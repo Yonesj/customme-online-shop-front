@@ -1,0 +1,80 @@
+/*************************************** heading *************************************************/
+
+main > h2 {
+    color: #b95962;
+    padding: 0 10.8rem;
+    margin-bottom: 3.2rem;
+}
+
+/*************************************** sign up form *************************************************/
+.form-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 4.4rem;
+    padding: 0 10.8rem;
+    margin-bottom: 4rem;
+}
+
+.form-section figure {
+    width: 52rem;
+    height: auto;
+}
+
+.form {
+    width: 64.8rem;
+    padding: 2.4rem;
+
+    border: 1px solid #ededed;
+    border-radius: 0.8rem;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.4rem 2.4rem;
+}
+
+.form-group {
+    width: 28.8rem;
+    margin-bottom: 1rem;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #cbcbcb;
+}
+
+input,
+select {
+    width: 100%;
+    padding: 0.8rem;
+
+    border: 1px solid #cbcbcb;
+    border-radius: 0.8rem;
+}
+
+.form-footer {
+    grid-row: 5;
+    grid-column: 2;
+
+    justify-self: end;
+    align-self: end;
+}
+
+.form-footer button {
+    color: #fff;
+    background-color: #a72f3b;
+    padding: 0.8rem 4rem;
+
+    border-radius: 0.8rem;
+    border: 1px solid #a72f3b;
+}
+
+/******************************************************************************************************************************/
+/******************************************************** user sign up page 2 *************************************************/
+/******************************************************************************************************************************/
+.address {
+    grid-row: 4;
+    grid-column: 1 / -1;
+    width: 100%;
+}
