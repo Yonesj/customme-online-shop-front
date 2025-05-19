@@ -1,0 +1,17 @@
+.category {
+    text-align: center;
+
+    height: 12.8rem;
+    border-radius: 1.6rem;
+    border: 1px solid #d6d6d6;
+    padding: 0.8rem;
+
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.product-img {
+    width: 100%;
+    height: auto;
+}
