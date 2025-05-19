@@ -121,11 +121,4 @@ html {
 body {
     font-family: var(--font-primary);
     direction: rtl;
-    background: var(--tint-1);
-    color: var(--shade-1);
 }
-
-/* 5. (Optional) Color utility classes */
-.text-primary { color: var(--color-primary); }
-.bg-error { background-color: var(--color-error); }
-/* …etc… */
