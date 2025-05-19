@@ -1,0 +1,36 @@
+.section-header {
+    width: 100%;
+    height: auto;
+
+    display: flex;
+    align-items: center;
+    gap: 1.6rem;
+
+    margin-bottom: 2.4rem;
+}
+
+.section-title {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.section-divider {
+    flex: 1;
+
+    height: 1px;
+    background-color: #d6d6d6;
+}
+
+.more-btn {
+    padding: 0.8rem 2.4rem;
+    color: #a72f3b;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.more-btn:hover {
+    cursor: pointer;
+}
