@@ -1,0 +1,75 @@
+.profile-sidebar {
+    width: 39.2rem;
+    padding: 2.4rem 3.2rem;
+
+    border: 1px solid #ededed;
+    border-radius: 1.6rem;
+    color: #656565;
+
+    display: flex;
+    flex-direction: column;
+    gap: 1.6rem;
+}
+
+.top-prof {
+    display: flex;
+    flex-direction: column;
+    gap: 2.4rem;
+}
+
+.information {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+
+    border-bottom: 1px solid #ededed;
+}
+
+.profile-picture {
+    position: relative;
+}
+
+.camera-btn {
+    position: absolute;
+    left: 2%;
+    bottom: 7%;
+}
+
+.dashbord {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 0.8rem;
+}
+
+.section {
+    display: flex;
+    flex-direction: column;
+    gap: 1.6rem;
+}
+
+.profile-sct {
+    padding: 0.8rem 0;
+    border-bottom: 1px solid #ededed;
+
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.profile-sct:last-child {
+    border: none;
+}
+
+.selected {
+    color: #b95962;
+    border-bottom: 1px solid #b95962;
+}
+
+.selected img {
+    stroke: #b95962;
+}
