@@ -1,0 +1,54 @@
+.order {
+    border: 1px solid #ededed;
+    border-radius: 0.8rem;
+}
+
+.order-info {
+    padding: 1.6rem;
+
+    display: flex;
+    flex-direction: column;
+    gap: 1.6rem;
+
+    color: #434343;
+    border-bottom: 1px solid #ededed;
+}
+
+.order-state {
+    display: flex;
+    gap: 0.8rem;
+    align-items: center;
+}
+
+.order-details {
+    display: flex;
+    gap: 2.4rem;
+    align-items: center;
+}
+
+.order-label {
+    color: #898989;
+}
+
+.order-pictures {
+    padding: 1.6rem;
+    border-bottom: 1px solid #ededed;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.btn-container {
+    padding: 1.6rem;
+    justify-self: end;
+}
+
+.view-order-btn {
+    padding: 0.8rem 2.4rem;
+    color: #a72f3b;
+
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
