@@ -1,0 +1,102 @@
+/*****************************************************************************************************/
+.comment-sct {
+    display: flex;
+    align-items: start;
+    justify-content: space-between;
+
+    margin-bottom: 7.2rem;
+}
+
+/*****************************************************************************************************/
+.comments {
+    width: 92rem;
+    padding-top: 4.8rem;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.comments header {
+    display: flex;
+    flex-direction: column;
+    gap: 2.4rem;
+    color: #434343;
+
+    border-bottom: 1px solid #ededed;
+    padding-bottom: 1.6rem;
+}
+
+.satisfaction-info {
+    display: flex;
+    align-items: center;
+    color: #898989;
+    gap: 0.4rem;
+}
+
+.users-uploaded-imgs {
+    display: flex;
+    align-items: center;
+    gap: 2.4rem;
+}
+
+/***************************************************************************************************/
+.overall-score-box {
+    width: 28.8rem;
+    padding: 2.4rem;
+
+    border: 1px solid #ededed;
+    border-radius: 1.6rem;
+}
+
+.overall-score-box h4 {
+    color: #86262f;
+    margin-bottom: 3.2rem;
+}
+
+.secondary-btn {
+    border-radius: 0.8rem;
+    border: 1px solid #a72f3b;
+
+    padding: 0.8rem 2.4rem;
+    color: #a72f3b;
+    background-color: transparent;
+
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.overall-score {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+
+    color: #898989;
+    margin-bottom: 0.8rem;
+}
+
+.score-field {
+    color: #000000;
+}
+
+.rating-info {
+    display: flex;
+    gap: 0.8rem;
+    color: #898989;
+    margin-bottom: 0.8rem;
+}
+
+.stars-row {
+    display: flex;
+    gap: 0.4rem;
+    align-items: center;
+}
+
+.fill-star {
+    fill: #f4b740;
+}
+
+.comment-promp {
+    color: #656565;
+    margin-bottom: 0.4rem;
+}
