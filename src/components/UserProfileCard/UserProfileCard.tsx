@@ -17,6 +17,7 @@ interface UserProfileCardProps {
   credit: string;
   designsCount: number;
   ordersCount: number;
+  selected: string;
 }
 
 function UserProfileCard({
@@ -26,7 +27,39 @@ function UserProfileCard({
   credit,
   designsCount,
   ordersCount,
+  selected,
 }: UserProfileCardProps): JSX.Element {
+  const sections = [
+    {
+      icon: <ListIcon1 width="2.4rem" height="2.4rem" />,
+      title: "داشبورد",
+    },
+    {
+      icon: <ListIcon2 width="2.4rem" height="2.4rem" />,
+      title: "تاریخچه سفارشات",
+    },
+    {
+      icon: <ListIcon3 width="2.4rem" height="2.4rem" />,
+      title: "گالری",
+    },
+    {
+      icon: <ListIcon4 width="2.4rem" height="2.4rem" />,
+      title: "آدرس ها",
+    },
+    {
+      icon: <ListIcon5 width="2.4rem" height="2.4rem" />,
+      title: "دنبال‌شوندگان",
+    },
+    {
+      icon: <ListIcon6 width="2.4rem" height="2.4rem" />,
+      title: "اطلاعات حساب کاربری",
+    },
+    {
+      icon: <ListIcon7 width="2.4rem" height="2.4rem" />,
+      title: "خروج",
+    },
+  ];
+
   return (
     <aside className={styles["profile-sidebar"]}>
       <div className={styles["top-prof"]}>
@@ -57,40 +90,18 @@ function UserProfileCard({
       </div>
 
       <div className={styles["sections"]}>
-        <div className={`${styles["profile-sct"]} ${styles.selected}`}>
-          <ListIcon1 width="2.4rem" height="2.4rem" />
-          <span>داشبورد</span>
-        </div>
-
-        <div className={styles["profile-sct"]}>
-          <ListIcon2 width="2.4rem" height="2.4rem" />
-          <span>تاریخچه سفارشات</span>
-        </div>
-
-        <div className={styles["profile-sct"]}>
-          <ListIcon3 width="2.4rem" height="2.4rem" />
-          <span>گالری</span>
-        </div>
-
-        <div className={styles["profile-sct"]}>
-          <ListIcon4 width="2.4rem" height="2.4rem" />
-          <span>آدرس ها</span>
-        </div>
-
-        <div className={styles["profile-sct"]}>
-          <ListIcon5 width="2.4rem" height="2.4rem" />
-          <span>دنبال‌شوندگان</span>
-        </div>
-
-        <div className={styles["profile-sct"]}>
-          <ListIcon6 width="2.4rem" height="2.4rem" />
-          <span>اطلاعات حساب کاربری</span>
-        </div>
-
-        <div className={styles["profile-sct"]}>
-          <ListIcon7 width="2.4rem" height="2.4rem" />
-          <span>خروج</span>
-        </div>
+        {sections.map((s, i) => {
+          let classes = [styles["profile-sct"]];
+          if (s.title === selected) {
+            classes.push(styles["selected"]);
+          }
+          return (
+            <div key={i} className={classes.join(" ")}>
+              {s.icon}
+              <span>{s.title}</span>
+            </div>
+          );
+        })}
       </div>
     </aside>
   );

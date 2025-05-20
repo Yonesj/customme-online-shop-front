@@ -70,6 +70,6 @@
     border-bottom: 1px solid #b95962;
 }
 
-.selected img {
+.selected svg {
     stroke: #b95962;
 }
