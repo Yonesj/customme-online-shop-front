@@ -1,0 +1,86 @@
+/****************************************** main container ****************************************/
+.container {
+    display: flex;
+    align-items: start;
+    justify-content: start;
+    gap: 6.8rem;
+
+    margin-bottom: 10.8rem;
+}
+
+/********************************************* profile-main-section *************************************/
+.profile-main-section {
+    border: 1px solid #ededed;
+    border-radius: 1.6rem;
+
+    width: 100%;
+    padding: 2.4rem 3.2rem;
+}
+
+.profile-main-section header {
+    border-bottom: 1px solid #ededed;
+    color: #242424;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    gap: 1.6rem;
+}
+
+.profile-main-section header div {
+    display: flex;
+    gap: 2.4rem;
+}
+
+/*********************************************** form *******************************************/
+.form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form {
+    padding: 2.4rem 0;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2.4rem 2.8rem;
+}
+
+.form-group {
+    width: 32rem;
+    margin-bottom: 1rem;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #cbcbcb;
+}
+
+input,
+select {
+    width: 100%;
+    padding: 0.8rem;
+
+    border: 1px solid #cbcbcb;
+    border-radius: 0.8rem;
+}
+
+.form-footer {
+    grid-row: 5;
+    grid-column: 2;
+
+    justify-self: end;
+    align-self: end;
+}
+
+.form-footer button {
+    color: #fff;
+    background-color: #a72f3b;
+    padding: 0.8rem 4rem;
+
+    border-radius: 0.8rem;
+    border: 1px solid #a72f3b;
+}
