@@ -1,0 +1,12 @@
+.secondary-btn {
+    border-radius: 0.8rem;
+    border: 1px solid #a72f3b;
+
+    padding: 0.8rem 2.4rem;
+    color: #a72f3b;
+    background-color: transparent;
+
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
