@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom";
 import { type JSX } from "react";
 
 import LogoIcon from "../assets/icons/header/logoImg.svg?react";
@@ -17,7 +18,9 @@ function Header(): JSX.Element {
       "
     >
       <figure>
-        <LogoIcon className="w-[18.9rem] h-auto block" />
+        <NavLink to="/" end>
+          <LogoIcon className="w-[18.9rem] h-auto block" />
+        </NavLink>
       </figure>
 
       <div
@@ -44,8 +47,8 @@ function Header(): JSX.Element {
       </div>
 
       <div className="flex items-center gap-[3.2rem]">
-        <a
-          href="#"
+        <NavLink
+          to="/users/sign-up"
           className="
             flex items-center gap-[0.4rem]
             text-[#242424] no-underline
@@ -53,9 +56,9 @@ function Header(): JSX.Element {
         >
           <LoggingIcon className="w-[2.4rem] h-[2.4rem]" />
           <span className="button-2">ورود | ثبت نام</span>
-        </a>
-        <a
-          href="#"
+        </NavLink>
+        <NavLink
+          to="/cart"
           className="
             flex items-center gap-[0.4rem]
             text-[#242424] no-underline
@@ -63,7 +66,7 @@ function Header(): JSX.Element {
         >
           <ShoppingCartIcon className="w-[2.4rem] h-[2.4rem]" />
           <span className="button-2">سبد خرید</span>
-        </a>
+        </NavLink>
       </div>
     </header>
   );
