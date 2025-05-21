@@ -57,8 +57,8 @@ function UserSignUp(): JSX.Element {
           </div>
 
           <div className={styles["form-footer"]}>
-            <button className="button-2" type="submit">
-              ثبت اطلاعات
+            <button className={styles["form-footer-btn"]} type="submit">
+              <span className="button-2">ثبت اطلاعات</span>
             </button>
           </div>
         </form>

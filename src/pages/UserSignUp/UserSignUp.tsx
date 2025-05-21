@@ -1,4 +1,5 @@
 import { type JSX } from "react";
+import { NavLink } from "react-router-dom";
 
 import styles from "./UserSignUp.module.css";
 
@@ -68,9 +69,13 @@ function UserSignUp(): JSX.Element {
           </div>
 
           <div className={styles["form-footer"]}>
-            <button className="button-2" type="submit">
-              مرحله بعدی
-            </button>
+            <NavLink
+              to="/users/sign-up/complete"
+              className={styles["form-footer-btn"]}
+              type="submit"
+            >
+              <span className="button-2"> مرحله بعدی</span>
+            </NavLink>
           </div>
         </form>
 
