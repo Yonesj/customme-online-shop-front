@@ -2,11 +2,9 @@ import { type JSX } from "react";
 
 import "./UserProfile.css";
 
-import Header from "../../components/Header.tsx";
 import NavBar from "../../components/NavBar.tsx";
 import UserProfileCard from "../../components/UserProfileCard";
 import ProductCard from "../../components/ProductCard";
-import Footer from "../../components/Footer.tsx";
 
 import ProfileImg from "../../assets/images/prof_picture.svg";
 import OrderIcon1 from "../../assets/icons/my_orders_details/my_orders-detail_icon_1.svg?react";
@@ -20,7 +18,6 @@ import ProductImg1 from "../../assets/images/product_card/product_img1.svg";
 function UserProfile(): JSX.Element {
   return (
     <>
-      <Header />
       <NavBar />
 
       <main className="px-[10.8rem]">
@@ -34,6 +31,7 @@ function UserProfile(): JSX.Element {
             credit="100000"
             designsCount={45}
             ordersCount={70}
+            selected="داشبورد"
           />
 
           <div className="profile-main-sct">
@@ -239,7 +237,6 @@ function UserProfile(): JSX.Element {
           </div>
         </div>
       </main>
-      <Footer />
     </>
   );
 }

@@ -2,7 +2,6 @@ import { type JSX } from "react";
 
 import "./Home.css";
 
-import Header from "../../components/Header.tsx";
 import NavBar from "../../components/NavBar.tsx";
 import Hero from "../../components/Hero.tsx";
 import Category from "../../components/Category";
@@ -11,7 +10,6 @@ import ProductCard from "../../components/ProductCard";
 import DesignerProfileCard from "../../components/DesignerProfileCard";
 import GiftBanner from "../../components/GiftBanner";
 import CallToAction from "../../components/CallToAction";
-import Footer from "../../components/Footer.tsx";
 
 import MedalIcon from "../../assets/icons/home/medal-star.svg?react";
 import DiscountIcon from "../../assets/icons/home/discount-shape.svg?react";
@@ -83,7 +81,6 @@ function Home(): JSX.Element {
 
   return (
     <>
-      <Header />
       <NavBar />
 
       <div className="px-[10.8rem]">
@@ -258,8 +255,6 @@ function Home(): JSX.Element {
           </div>
         </div>
       </div>
-
-      <Footer />
     </>
   );
 }

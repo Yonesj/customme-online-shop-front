@@ -2,12 +2,10 @@ import { type JSX } from "react";
 
 import "./Cart.css";
 
-import Header from "../../components/Header.tsx";
 import NavBar from "../../components/NavBar.tsx";
 import Stepper from "../../components/Stepper";
 import CartItem from "../../components/CartItem";
 import Invoice from "../../components/Invoice";
-import Footer from "../../components/Footer.tsx";
 
 import LocationIcon from "../../assets/icons/stepper/location.svg?react";
 import CartIcon from "../../assets/icons/stepper/shopping-cart_bold.svg?react";
@@ -28,7 +26,6 @@ function Cart(): JSX.Element {
 
   return (
     <>
-      <Header />
       <NavBar />
 
       <main className="px-[10.8rem]">
@@ -66,7 +63,6 @@ function Cart(): JSX.Element {
           </aside>
         </div>
       </main>
-      <Footer />
     </>
   );
 }

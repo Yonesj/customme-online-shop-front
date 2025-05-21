@@ -2,11 +2,9 @@ import { type JSX } from "react";
 
 import "./SelectedProduct.css";
 
-import Header from "../../components/Header.tsx";
 import NavBar from "../../components/NavBar.tsx";
 import ProductDetail from "../../components/ProductDetail";
 import Comment from "../../components/Comment";
-import Footer from "../../components/Footer.tsx";
 
 import LikeIcon from "../../assets/icons/comment/like_btn.svg?react";
 import ProductImgS from "../../assets/images/product_detail/product_img_smaller.svg";
@@ -14,7 +12,6 @@ import ProductImgS from "../../assets/images/product_detail/product_img_smaller.
 function SelectedProduct(): JSX.Element {
   return (
     <>
-      <Header />
       <NavBar />
 
       <main className="px-[10.8rem]">
@@ -157,7 +154,6 @@ function SelectedProduct(): JSX.Element {
           </div>
         </div>
       </main>
-      <Footer />
     </>
   );
 }

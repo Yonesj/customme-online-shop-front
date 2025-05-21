@@ -2,10 +2,8 @@ import { type JSX } from "react";
 
 import "./OrdersHistory.css";
 
-import Header from "../../components/Header.tsx";
 import NavBar from "../../components/NavBar.tsx";
 import UserProfileCard from "../../components/UserProfileCard";
-import Footer from "../../components/Footer.tsx";
 import OrderItem from "../../components/OrderItem";
 
 import ProfileImg from "../../assets/images/prof_picture.svg";
@@ -54,7 +52,6 @@ function OrdersHistory(): JSX.Element {
 
   return (
     <>
-      <Header />
       <NavBar />
 
       <main className="px-[10.8rem]">
@@ -103,7 +100,6 @@ function OrdersHistory(): JSX.Element {
           </div>
         </div>
       </main>
-      <Footer />
     </>
   );
 }
