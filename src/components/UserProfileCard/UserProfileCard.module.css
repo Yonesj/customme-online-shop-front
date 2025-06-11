@@ -50,26 +50,3 @@
     flex-direction: column;
     gap: 1.6rem;
 }
-
-.profile-sct {
-    padding: 0.8rem 0;
-    border-bottom: 1px solid #ededed;
-
-    display: flex;
-    justify-content: start;
-    align-items: center;
-    gap: 0.8rem;
-}
-
-.profile-sct:last-child {
-    border: none;
-}
-
-.selected {
-    color: #b95962;
-    border-bottom: 1px solid #b95962;
-}
-
-.selected svg {
-    stroke: #b95962;
-}

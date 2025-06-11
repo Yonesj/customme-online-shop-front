@@ -75,7 +75,11 @@ function UserProfileCard({
         <div className={styles.information}>
           <div className={styles["profile-picture"]}>
             <img src={profilePicPath} alt="profile picture" />
-            <CameraIcon width="4rem" height="4rem" />
+            <CameraIcon
+              className={styles["camera-btn"]}
+              width="4rem"
+              height="4rem"
+            />
           </div>
 
           <span>{username}</span>
@@ -100,10 +104,20 @@ function UserProfileCard({
 
       <div className={styles["sections"]}>
         {sections.map((s, i) => {
-          let classes = [styles["profile-sct"]];
+          let classes = [
+            "py-[0.8rem] flex justify-start items-center gap-[0.8rem] border-b border-b-solid",
+          ];
+
           if (s.title === selected) {
-            classes.push(styles["selected"]);
+            classes.push("text-[#b95962] border-b-[#b95962] stroke-[#b95962]");
+          } else {
+            classes.push("border-b-[#ededed]");
           }
+
+          if (i === sections.length - 1) {
+            classes.push("border-none");
+          }
+
           return (
             <NavLink className="text-[#656565]" to={s.link}>
               <div key={i} className={classes.join(" ")}>
