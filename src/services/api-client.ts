@@ -1,9 +1,26 @@
-import axios, { CanceledError } from "axios";
+// src/services/api-client.ts
+import axios, { type InternalAxiosRequestConfig, CanceledError } from "axios";
 
-export default axios.create({
-  // baseURL: import.meta.env.API_BASE_URL
+const apiClient = axios.create({
   baseURL: "http://localhost:8000/",
-  headers: { "Content-Type": "application/json" },
+  headers: {
+    "Content-Type": "application/json",
+  },
 });
 
+apiClient.interceptors.request.use(
+  (config: InternalAxiosRequestConfig) => {
+    const accessToken = localStorage.getItem("accessToken");
+
+    if (accessToken && config.headers) {
+      config.headers.Authorization = `JWT ${accessToken}`;
+    }
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  },
+);
+
+export default apiClient;
 export { CanceledError };
