@@ -55,3 +55,11 @@ body > main > h2 {
     gap: 2.4rem;
 }
 
+.tab-container span {
+    cursor: pointer;
+}
+
+.selected {
+    color: #b95962;
+    border-bottom: 1px solid #b95962;
+}

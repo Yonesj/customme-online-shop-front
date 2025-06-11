@@ -1,4 +1,4 @@
-import { type JSX } from "react";
+import { type JSX, useState } from "react";
 
 import "./OrdersHistory.css";
 
@@ -17,37 +17,38 @@ import OrderImg7 from "../../assets/images/order_history/order_pic7.svg";
 import OrdersNotFound from "../../assets/images/order_history/no_orders_found.svg";
 
 function OrdersHistory(): JSX.Element {
+  const [tab, setTab] = useState("pending");
   const currentOrders = [
-    // {
-    //   createdAt: "3 شهریور 1402",
-    //   orderCode: "354534521",
-    //   totalCost: "545.000",
-    //   discount: "545.000",
-    //   orderImagePaths: [
-    //     OrderImg1,
-    //     OrderImg2,
-    //     OrderImg3,
-    //     OrderImg4,
-    //     OrderImg5,
-    //     OrderImg6,
-    //     OrderImg7,
-    //   ],
-    // },
-    // {
-    //   createdAt: "3 شهریور 1402",
-    //   orderCode: "354534521",
-    //   totalCost: "545.000",
-    //   discount: "545.000",
-    //   orderImagePaths: [
-    //     OrderImg1,
-    //     OrderImg2,
-    //     OrderImg3,
-    //     OrderImg4,
-    //     OrderImg5,
-    //     OrderImg6,
-    //     OrderImg7,
-    //   ],
-    // },
+    {
+      createdAt: "3 شهریور 1402",
+      orderCode: "354534521",
+      totalCost: "545.000",
+      discount: "545.000",
+      orderImagePaths: [
+        OrderImg1,
+        OrderImg2,
+        OrderImg3,
+        OrderImg4,
+        OrderImg5,
+        OrderImg6,
+        OrderImg7,
+      ],
+    },
+    {
+      createdAt: "3 شهریور 1402",
+      orderCode: "354534521",
+      totalCost: "545.000",
+      discount: "545.000",
+      orderImagePaths: [
+        OrderImg1,
+        OrderImg2,
+        OrderImg3,
+        OrderImg4,
+        OrderImg5,
+        OrderImg6,
+        OrderImg7,
+      ],
+    },
   ];
 
   return (
@@ -71,11 +72,26 @@ function OrdersHistory(): JSX.Element {
           <div className="profile-main-section">
             <header>
               <h4 className="heading-4">تاریخچه سفارشات</h4>
-              <div className="body-3">
-                <span className="selected">جاری 0</span>
-                <span>تحویل شده 26</span>
+              <div className="body-3 tab-container">
+                <span
+                  className={tab === "pending" ? "selected" : ""}
+                  onClick={() => setTab("pending")}
+                >
+                  جاری 0
+                </span>
+                <span
+                  className={tab === "delivered" ? "selected" : ""}
+                  onClick={() => setTab("delivered")}
+                >
+                  تحویل شده 26
+                </span>
                 <span>مرجوع شده 4</span>
-                <span>لغو شده 4</span>
+                <span
+                  className={tab === "canceled" ? "selected" : ""}
+                  onClick={() => setTab("canceled")}
+                >
+                  لغو شده 4
+                </span>
               </div>
             </header>
 
@@ -89,6 +105,7 @@ function OrdersHistory(): JSX.Element {
               {currentOrders.length > 0 &&
                 currentOrders.map((order, i) => (
                   <OrderItem
+                    state={tab}
                     createdAt={order.createdAt}
                     orderCode={order.orderCode}
                     totalCost={order.totalCost}
