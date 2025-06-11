@@ -1,7 +1,14 @@
 import { type JSX } from "react";
-import { useForm } from "react-hook-form";
+import { type SubmitHandler, useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useNavigate } from "react-router-dom";
+import { CanceledError } from "axios";
+import { toast } from "react-toastify";
+
+import userService, {
+  type SignUpPayload,
+} from "../../services/userServices.ts";
 
 import styles from "./UserSignUp.module.css";
 
@@ -16,6 +23,13 @@ import SignUpImg from "../../assets/images/designer_sign_up_img.svg";
 
 const educationEnumKeys = Object.keys(EducationOptions);
 const jobEnumKeys = Object.keys(JobOptions);
+
+const formatDateToYYYYMMDD = (date: Date): string => {
+  const year = date.getFullYear();
+  const month = (date.getMonth() + 1).toString().padStart(2, "0");
+  const day = date.getDate().toString().padStart(2, "0");
+  return `${year}-${month}-${day}`;
+};
 
 const schema = z.object({
   full_name: z.string().min(3, "نام کامل حداقل باید ۳ کاراکتر باشد."),
@@ -41,6 +55,7 @@ const schema = z.object({
 type FormData = z.infer<typeof schema>;
 
 function UserSignUp(): JSX.Element {
+  let navigate = useNavigate();
   const steps = [
     { info: "اطلاعات کاربر", icon: <Step1 width="2.4rem" height="2.4rem" /> },
     { info: "اطلاعات تماس", icon: <Step2 width="2.4rem" height="2.4rem" /> },
@@ -54,8 +69,29 @@ function UserSignUp(): JSX.Element {
     resolver: zodResolver(schema),
   });
 
-  const processForm = async (data: FormData) => {
-    console.log("Form data submitted:", data);
+  const processForm: SubmitHandler<FormData> = async (data) => {
+    const formattedBirthDate = formatDateToYYYYMMDD(data.birth_date);
+    const payload: SignUpPayload = {
+      ...data,
+      birth_date: formattedBirthDate,
+      job: data.job || "NONE",
+    };
+    // console.log(payload);
+    const { request, cancel } = userService.signUp(payload);
+
+    try {
+      const response = await request;
+      console.log("Sign up successful:", response.data);
+      navigate("/users/sign-up/complete");
+    } catch (err) {
+      if (err instanceof CanceledError) {
+        console.log("Request canceled");
+        return;
+      }
+
+      console.error("Sign up failed:", err);
+      toast.error("ثبت نام با خطا مواجه شد. لطفا دوباره تلاش کنید.");
+    }
   };
 
   return (
@@ -138,7 +174,7 @@ function UserSignUp(): JSX.Element {
               id="job"
               aria-invalid={errors.job ? "true" : "false"}
             >
-              <option value="">انتخاب کنید</option>
+              <option value="NONE">انتخاب کنید</option>
               {Object.entries(JobOptions).map(([value, displayName]) => (
                 <option key={value} value={value}>
                   {displayName}
