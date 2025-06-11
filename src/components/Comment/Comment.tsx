@@ -7,7 +7,7 @@ import DisLikeIcon from "../../assets/icons/comment/dislike_btn.svg?react";
 import MinusIcon from "../../assets/icons/comment/minus.svg?react";
 import PlusIcon from "../../assets/icons/comment/add-square.svg?react";
 
-interface CommentProps {
+export interface CommentProps {
   date: string;
   username: string;
   commentText: string;

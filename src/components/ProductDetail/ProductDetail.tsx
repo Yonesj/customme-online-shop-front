@@ -1,4 +1,5 @@
 import { type JSX } from "react";
+import { NavLink } from "react-router-dom";
 
 import PrimaryButton from "../PrimaryButton.tsx";
 import SecondaryButton from "../SecondaryButton";
@@ -68,16 +69,18 @@ function ProductDetail(): JSX.Element {
                 />
               }
             />
-            <PrimaryButton
-              text="افزودن به سبد"
-              icon={
-                <ShoppingCartIcon
-                  className="text-[#FFF]"
-                  width="2.4rem"
-                  height="2.4rem"
-                />
-              }
-            />
+            <NavLink to="/cart">
+              <PrimaryButton
+                text="افزودن به سبد"
+                icon={
+                  <ShoppingCartIcon
+                    className="text-[#FFF]"
+                    width="2.4rem"
+                    height="2.4rem"
+                  />
+                }
+              />
+            </NavLink>
           </div>
         </div>
       </div>

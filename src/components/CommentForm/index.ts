@@ -1,2 +1,3 @@
-import CommentForm from "./CommentForm.tsx";
+import CommentForm, { type CommentFormData } from "./CommentForm.tsx";
 export default CommentForm;
+export { CommentFormData };

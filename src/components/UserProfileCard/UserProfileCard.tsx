@@ -1,4 +1,6 @@
 import { type JSX } from "react";
+import { NavLink } from "react-router-dom";
+
 import styles from "./UserProfileCard.module.css";
 
 import CameraIcon from "../../assets/icons/user_profile/camera_icon.svg?react";
@@ -33,30 +35,37 @@ function UserProfileCard({
     {
       icon: <ListIcon1 width="2.4rem" height="2.4rem" />,
       title: "داشبورد",
+      link: "/my-profile/dashboard",
     },
     {
       icon: <ListIcon2 width="2.4rem" height="2.4rem" />,
       title: "تاریخچه سفارشات",
+      link: "my-profile/orders",
     },
     {
       icon: <ListIcon3 width="2.4rem" height="2.4rem" />,
       title: "گالری",
+      link: "#",
     },
     {
       icon: <ListIcon4 width="2.4rem" height="2.4rem" />,
       title: "آدرس ها",
+      link: "#",
     },
     {
       icon: <ListIcon5 width="2.4rem" height="2.4rem" />,
       title: "دنبال‌شوندگان",
+      link: "#",
     },
     {
       icon: <ListIcon6 width="2.4rem" height="2.4rem" />,
       title: "اطلاعات حساب کاربری",
+      link: "/my-profile/info",
     },
     {
       icon: <ListIcon7 width="2.4rem" height="2.4rem" />,
       title: "خروج",
+      link: "#",
     },
   ];
 
@@ -96,10 +105,12 @@ function UserProfileCard({
             classes.push(styles["selected"]);
           }
           return (
-            <div key={i} className={classes.join(" ")}>
-              {s.icon}
-              <span>{s.title}</span>
-            </div>
+            <NavLink className="text-[#656565]" to={s.link}>
+              <div key={i} className={classes.join(" ")}>
+                {s.icon}
+                <span>{s.title}</span>
+              </div>
+            </NavLink>
           );
         })}
       </div>
