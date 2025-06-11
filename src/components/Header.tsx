@@ -48,7 +48,7 @@ function Header(): JSX.Element {
 
       <div className="flex items-center gap-[3.2rem]">
         <NavLink
-          to="/users/sign-up"
+          to="/users/login"
           className="
             flex items-center gap-[0.4rem]
             text-[#242424] no-underline
