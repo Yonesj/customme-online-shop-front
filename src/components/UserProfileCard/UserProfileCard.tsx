@@ -16,7 +16,7 @@ interface UserProfileCardProps {
   profilePicPath: string;
   username: string;
   email: string;
-  credit: string;
+  credit: number;
   designsCount: number;
   ordersCount: number;
   selected: string;
@@ -40,7 +40,7 @@ function UserProfileCard({
     {
       icon: <ListIcon2 width="2.4rem" height="2.4rem" />,
       title: "تاریخچه سفارشات",
-      link: "my-profile/orders",
+      link: "/my-profile/orders",
     },
     {
       icon: <ListIcon3 width="2.4rem" height="2.4rem" />,
