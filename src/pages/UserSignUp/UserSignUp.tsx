@@ -82,7 +82,9 @@ function UserSignUp(): JSX.Element {
     try {
       const response = await request;
       console.log("Sign up successful:", response.data);
-      navigate("/users/sign-up/complete");
+      navigate("/users/sign-up/complete", {
+        state: { userId: response.data.id },
+      });
     } catch (err) {
       if (err instanceof CanceledError) {
         console.log("Request canceled");
