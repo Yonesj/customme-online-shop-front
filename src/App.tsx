@@ -1,4 +1,5 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+// src/App.tsx
+import { Routes, Route } from "react-router-dom";
 
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -14,13 +15,15 @@ import UserSignUp from "./pages/UserSignUp/UserSignUp.tsx";
 import UserSignUpPage2 from "./pages/UserSignUp/UserSignUpPage2.tsx";
 import Login from "./pages/Login";
 
-import Header from "./components/Header.tsx";
-import Footer from "./components/Footer.tsx";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
   return (
-    <BrowserRouter>
+    <>
       <ToastContainer position="top-center" autoClose={3000} />
+
       <Header />
 
       <Routes>
@@ -31,15 +34,18 @@ function App() {
         <Route path="/users/login" element={<Login />} />
         <Route path="/users/sign-up" element={<UserSignUp />} />
         <Route path="/users/sign-up/complete" element={<UserSignUpPage2 />} />
-        <Route path="/my-profile/dashboard" element={<UserProfile />} />
-        <Route path="/my-profile/orders" element={<OrdersHistory />} />
-        <Route path="/my-profile/info" element={<UserAccountInfo />} />
 
-        {/*<Route path="*" element={<NotFound />} />*/}
+        <Route element={<ProtectedRoute />}>
+          <Route path="/my-profile/dashboard" element={<UserProfile />} />
+          <Route path="/my-profile/orders" element={<OrdersHistory />} />
+          <Route path="/my-profile/info" element={<UserAccountInfo />} />
+        </Route>
+
+        {/* <Route path="*" element={<NotFound />} /> */}
       </Routes>
 
       <Footer />
-    </BrowserRouter>
+    </>
   );
 }
 
