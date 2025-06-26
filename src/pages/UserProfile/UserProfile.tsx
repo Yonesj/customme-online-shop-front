@@ -1,10 +1,15 @@
-import { type JSX } from "react";
+import { type JSX, useEffect, useState } from "react";
 
 import "./UserProfile.css";
 
 import NavBar from "../../components/NavBar.tsx";
 import UserProfileCard from "../../components/UserProfileCard";
 import ProductCard from "../../components/ProductCard";
+
+import { useAuth } from "../../context/AuthContext.tsx";
+import customerService from "../../services/customerServices.ts";
+import productServices from "../../services/productServices.ts";
+import { CanceledError } from "axios";
 
 import ProfileImg from "../../assets/images/prof_picture.svg";
 import OrderIcon1 from "../../assets/icons/my_orders_details/my_orders-detail_icon_1.svg?react";
@@ -13,9 +18,120 @@ import OrderIcon3 from "../../assets/icons/my_orders_details/my_orders-detail_ic
 import OrderIcon4 from "../../assets/icons/my_orders_details/my_orders-detail_icon_4.svg?react";
 import OrderIcon5 from "../../assets/icons/my_orders_details/my_orders-detail_icon_5.svg?react";
 import OrderIcon6 from "../../assets/icons/my_orders_details/my_orders-detail_icon_6.svg?react";
+import LeftArrowIcon from "../../assets/icons/arrows/arrow-left.svg?react";
 import ProductImg1 from "../../assets/images/product_card/product_img1.svg";
 
+interface ProductCardInterface {
+  id: number;
+  thumbnail: string;
+  title: string;
+  description: string;
+  price: number;
+}
+
 function UserProfile(): JSX.Element {
+  const { isAuthenticated } = useAuth();
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const [profile, setProfile] = useState({
+    profile: ProfileImg,
+    full_name: "نگار زمانی",
+    email: "xxxxx@Yahoo.com",
+    credit: 100000,
+    designs_count: 45,
+    orders_count: 75,
+  });
+  const [orderDetails, setOrderDetails] = useState({
+    current_count: 0,
+    canceled_count: 0,
+    completed_count: 0,
+    gallery_count: 0,
+    comment_count: 0,
+  });
+  const [likedProducts, setLikedProducts] = useState<ProductCardInterface[]>();
+
+  useEffect(() => {
+    if (!isAuthenticated) {
+      return;
+    }
+
+    const { request, cancel } = customerService.retrieveProfile();
+
+    request
+      .then((res) => {
+        setProfile(res.data);
+      })
+      .catch((err) => {
+        if (err instanceof CanceledError) {
+          console.log(
+            "Profile fetch canceled by component unmount or new request",
+          );
+          return;
+        }
+        console.error("Failed to fetch profile:", err);
+        setError(
+          err.message || "متاسفانه بارگذاری اطلاعات پروفایل با مشکل مواجه شد.",
+        );
+      });
+
+    return () => cancel();
+  }, []);
+
+  useEffect(() => {
+    if (!isAuthenticated) {
+      return;
+    }
+
+    const { request, cancel } = customerService.retrieveOrderDetails();
+
+    request
+      .then((res) => {
+        setOrderDetails(res.data);
+      })
+      .catch((err) => {
+        if (err instanceof CanceledError) {
+          console.log(
+            "Profile fetch canceled by component unmount or new request",
+          );
+          return;
+        }
+        console.error("Failed to fetch profile:", err);
+        setError(
+          err.message || "متاسفانه بارگذاری اطلاعات پروفایل با مشکل مواجه شد.",
+        );
+      });
+
+    return () => cancel();
+  }, []);
+
+  useEffect(() => {
+    if (!isAuthenticated) {
+      return;
+    }
+
+    const { request, cancel } = productServices.retrieveLikedProducts();
+
+    request
+      .then((res) => {
+        setLikedProducts(res.data);
+      })
+      .catch((err) => {
+        if (err instanceof CanceledError) {
+          console.log(
+            "product fetch canceled by component unmount or new request",
+          );
+          return;
+        }
+        console.error("Failed to fetch profile:", err);
+        setError(
+          err.message ||
+            "متاسفانه بارگذاری اطلاعات کالاهای مورد علاقه با مشکل مواجه شد.",
+        );
+      });
+
+    return () => cancel();
+  }, []);
+
   return (
     <>
       <NavBar />
@@ -25,12 +141,12 @@ function UserProfile(): JSX.Element {
 
         <div className="container body-1">
           <UserProfileCard
-            profilePicPath={ProfileImg}
-            username="نگار زمانی"
-            email="xxxxx@Yahoo.com"
-            credit="100000"
-            designsCount={45}
-            ordersCount={70}
+            profilePicPath={profile.profile}
+            username={profile.full_name}
+            email={profile.email}
+            credit={profile.credit}
+            designsCount={profile.designs_count}
+            ordersCount={profile.orders_count}
             selected="داشبورد"
           />
 
@@ -42,7 +158,9 @@ function UserProfile(): JSX.Element {
                   <div className="order-detail">
                     <OrderIcon1 width="2.4rem" height="2.4rem" />
                     <div>
-                      <span className="body-2">45 سفارش</span>
+                      <span className="body-2">
+                        {orderDetails.current_count} سفارش
+                      </span>
                       <span className="body-5">جاری</span>
                     </div>
                   </div>
@@ -50,7 +168,9 @@ function UserProfile(): JSX.Element {
                   <div className="order-detail">
                     <OrderIcon2 width="2.4rem" height="2.4rem" />
                     <div>
-                      <span className="body-2">54 نظر</span>
+                      <span className="body-2">
+                        {orderDetails.comment_count} نظر
+                      </span>
                       <span className="body-5">ثبت شده</span>
                     </div>
                   </div>
@@ -62,7 +182,9 @@ function UserProfile(): JSX.Element {
                   <div className="order-detail">
                     <OrderIcon3 width="2.4rem" height="2.4rem" />
                     <div>
-                      <span className="body-2">45 سفارش</span>
+                      <span className="body-2">
+                        {orderDetails.completed_count} سفارش
+                      </span>
                       <span className="body-5">ارسال شده</span>
                     </div>
                   </div>
@@ -70,7 +192,9 @@ function UserProfile(): JSX.Element {
                   <div className="order-detail">
                     <OrderIcon4 width="2.4rem" height="2.4rem" />
                     <div>
-                      <span className="body-2">215 سفارش</span>
+                      <span className="body-2">
+                        {orderDetails.canceled_count} سفارش
+                      </span>
                       <span className="body-5">لغو شده</span>
                     </div>
                   </div>
@@ -82,7 +206,9 @@ function UserProfile(): JSX.Element {
                   <div className="order-detail">
                     <OrderIcon5 width="2.4rem" height="2.4rem" />
                     <div>
-                      <span className="body-2">10 محصول</span>
+                      <span className="body-2">
+                        {orderDetails.gallery_count} محصول
+                      </span>
                       <span className="body-5">در گالری</span>
                     </div>
                   </div>
@@ -90,7 +216,9 @@ function UserProfile(): JSX.Element {
                   <div className="order-detail">
                     <OrderIcon6 width="2.4rem" height="2.4rem" />
                     <div>
-                      <span className="body-2">28 محصول</span>
+                      <span className="body-2">
+                        {orderDetails.gallery_count} محصول
+                      </span>
                       <span className="body-5">فیزیکی</span>
                     </div>
                   </div>
@@ -98,7 +226,7 @@ function UserProfile(): JSX.Element {
               </div>
             </header>
 
-            <div className="sub-section">
+            <div className="sub-section h-[50rem]">
               <div className="sub-section-header">
                 <h4 className="heading-4">علاقه مندی های من</h4>
                 <a href="#" className="button-2 more-info-btn">
@@ -107,44 +235,33 @@ function UserProfile(): JSX.Element {
               </div>
 
               <div className="products-row">
-                {[1, 2, 3].map((i) => (
+                {likedProducts?.map((product) => (
                   <ProductCard
-                    key={i}
-                    image={<img src={ProductImg1} alt="product_img4" />}
-                    title="کیف زنانه"
-                    description="دارای رنگبندی، قابل طراحی"
-                    price="150000"
+                    key={product.id}
+                    image={
+                      <img src={product.thumbnail} alt="product thumbnail" />
+                    }
+                    title={product.title}
+                    description={product.description}
+                    price={product.price}
+                    isLiked={true}
                   />
                 ))}
 
-                <div className="left-btn">
-                  <svg
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M9.57 5.92993L3.5 11.9999L9.57 18.0699"
-                      stroke-width="3"
-                      stroke-miterlimit="20"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
+                {likedProducts?.length >= 3 && (
+                  <button className="left-btn">
+                    <LeftArrowIcon
+                      width="2.4rem"
+                      height="2.4rem"
+                      stroke="#86262f"
+                      stroke-width="0.3rem"
                     />
-                    <path
-                      d="M20.5 12H3.67004"
-                      stroke-width="3"
-                      stroke-miterlimit="20"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    />
-                  </svg>
-                </div>
+                  </button>
+                )}
               </div>
             </div>
 
-            <div className="sub-section">
+            <div className="sub-section h-[50rem]">
               <div className="sub-section-header">
                 <h4 className="heading-4">خرید های پرتکرار من</h4>
                 <a href="#" className="button-2 more-info-btn">
@@ -160,37 +277,22 @@ function UserProfile(): JSX.Element {
                     title="کیف زنانه"
                     description="دارای رنگبندی، قابل طراحی"
                     price="150000"
+                    isLiked={false}
                   />
                 ))}
 
-                <div className="left-btn">
-                  <svg
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M9.57 5.92993L3.5 11.9999L9.57 18.0699"
-                      stroke-width="3"
-                      stroke-miterlimit="20"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    />
-                    <path
-                      d="M20.5 12H3.67004"
-                      stroke-width="3"
-                      stroke-miterlimit="20"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    />
-                  </svg>
-                </div>
+                <button className="left-btn">
+                  <LeftArrowIcon
+                    width="2.4rem"
+                    height="2.4rem"
+                    stroke="#86262f"
+                    stroke-width="0.3rem"
+                  />
+                </button>
               </div>
             </div>
 
-            <div className="sub-section">
+            <div className="sub-section h-[50rem]">
               <div className="sub-section-header">
                 <h4 className="heading-4">گالری من</h4>
                 <a href="#" className="button-2 more-info-btn">
@@ -205,33 +307,18 @@ function UserProfile(): JSX.Element {
                     image={<img src={ProductImg1} alt="product_img4" />}
                     title="کیف زنانه"
                     description="دارای رنگبندی، قابل طراحی"
+                    isLiked={true}
                   />
                 ))}
 
-                <div class="left-btn">
-                  <svg
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M9.57 5.92993L3.5 11.9999L9.57 18.0699"
-                      stroke-width="3"
-                      stroke-miterlimit="20"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    />
-                    <path
-                      d="M20.5 12H3.67004"
-                      stroke-width="3"
-                      stroke-miterlimit="20"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    />
-                  </svg>
-                </div>
+                <button className="left-btn">
+                  <LeftArrowIcon
+                    width="2.4rem"
+                    height="2.4rem"
+                    stroke="#86262f"
+                    stroke-width="0.3rem"
+                  />
+                </button>
               </div>
             </div>
           </div>
