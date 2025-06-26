@@ -32,6 +32,26 @@ export interface LoginSuccessResponse {
   refresh: string;
 }
 
+export interface RetrieveAccountInfoResponse {
+  full_name: string;
+  national_id: string;
+  education: string;
+  job: string;
+  email: string;
+  birth_date: string;
+}
+
+export interface UpdateAccountInfoPayload {
+  full_name: string;
+  national_id: string;
+  education: string;
+  job: string;
+  email: string;
+  birth_date: string;
+  new_password?: string;
+  retyped_password?: string;
+}
+
 class UserService {
   signUp(data: SignUpPayload) {
     const controller = new AbortController();
@@ -65,6 +85,27 @@ class UserService {
       request,
       cancel: () => controller.abort(),
     };
+  }
+
+  retrieveAccountInfo() {
+    const controller = new AbortController();
+
+    const request: AxiosPromise<RetrieveAccountInfoResponse> = client.get(
+      "auth/users/me/",
+      {
+        signal: controller.signal,
+      },
+    );
+
+    return {
+      request,
+      cancel: () => controller.abort(),
+    };
+  }
+
+  updateAccountInfo(data: UpdateAccountInfoPayload) {
+    const request: AxiosPromise = client.patch("auth/users/me/", data);
+    return request;
   }
 }
 
