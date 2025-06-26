@@ -1,15 +1,60 @@
-import { type JSX } from "react";
+import { type JSX, useState } from "react";
 
 import "./SelectedProduct.css";
 
 import NavBar from "../../components/NavBar.tsx";
 import ProductDetail from "../../components/ProductDetail";
-import Comment from "../../components/Comment";
+import Comment, { type CommentProps } from "../../components/Comment";
+import CommentForm, {
+  type CommentFormData,
+} from "../../components/CommentForm";
 
 import LikeIcon from "../../assets/icons/comment/like_btn.svg?react";
 import ProductImgS from "../../assets/images/product_detail/product_img_smaller.svg";
 
 function SelectedProduct(): JSX.Element {
+  const [comments, setComments] = useState<CommentProps[]>([
+    {
+      date: "۱۶ آذر ۱۴۰۲",
+      username: "نگار زمانی",
+      commentText: "بسیار عالی و با کیفیت",
+      stars: 4,
+      positiveProps: ["خنک", "با کیفیت"],
+      negativeProps: ["گران"],
+    },
+    {
+      date: "۱۶ آذر ۱۴۰۲",
+      username: "نگار زمانی",
+      commentText: "بسیار عالی و با کیفیت",
+      stars: 4,
+      positiveProps: ["خنک", "با کیفیت"],
+      negativeProps: ["گران"],
+    },
+    {
+      date: "۱۶ آذر ۱۴۰۲",
+      username: "نگار زمانی",
+      commentText: "بسیار عالی و با کیفیت",
+      stars: 4,
+      positiveProps: ["خنک", "با کیفیت"],
+      negativeProps: ["گران"],
+    },
+  ]);
+  const [showPopup, setShowPopup] = useState(false);
+
+  const handleNewComment = (data: CommentFormData) => {
+    setComments((prev) => [
+      ...prev,
+      {
+        date: new Date().toLocaleDateString("fa-IR"),
+        username: "yabal",
+        commentText: data.commentText,
+        stars: 3,
+        positiveProps: data.positiveProps ? data.positiveProps.split(",") : [],
+        negativeProps: data.negativeProps ? data.negativeProps.split(",") : [],
+      },
+    ]);
+  };
+
   return (
     <>
       <NavBar />
@@ -103,7 +148,10 @@ function SelectedProduct(): JSX.Element {
 
               <p className="body-4 comment-promp">نظر خود را ثبت کنید</p>
 
-              <button className="secondary-btn">
+              <button
+                className="secondary-btn"
+                onClick={() => setShowPopup(true)}
+              >
                 <span className="button-2">ثبت دیدگاه</span>
               </button>
             </div>
@@ -124,36 +172,29 @@ function SelectedProduct(): JSX.Element {
                 <span>مشاهده بیشتر</span>
               </header>
 
-              <Comment
-                date="۱۶ آذر ۱۴۰۲"
-                username="نگار زمانی"
-                commentText="بسیار عالی و با کیفیت"
-                stars={4}
-                positiveProps={["خنک", "با کیفیت"]}
-                negativeProps={["گران"]}
-              />
-
-              <Comment
-                date="۱۶ آذر ۱۴۰۲"
-                username="نگار زمانی"
-                commentText="بسیار عالی و با کیفیت"
-                stars={4}
-                positiveProps={["خنک", "با کیفیت"]}
-                negativeProps={["گران"]}
-              />
-
-              <Comment
-                date="۱۶ آذر ۱۴۰۲"
-                username="نگار زمانی"
-                commentText="بسیار عالی و با کیفیت"
-                stars={4}
-                positiveProps={["خنک", "با کیفیت"]}
-                negativeProps={["گران"]}
-              />
+              {comments.map((c, i) => (
+                <Comment
+                  key={i}
+                  date={c.date}
+                  username={c.username}
+                  commentText={c.commentText}
+                  stars={c.stars}
+                  positiveProps={c.positiveProps}
+                  negativeProps={c.negativeProps}
+                />
+              ))}
             </div>
           </div>
         </div>
       </main>
+
+      {showPopup && (
+        <CommentForm
+          productTitle="تیشرت ساده سفید"
+          onClose={() => setShowPopup(false)}
+          onSubmit={handleNewComment}
+        />
+      )}
     </>
   );
 }
