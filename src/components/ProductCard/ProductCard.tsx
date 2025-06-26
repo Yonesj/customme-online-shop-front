@@ -1,13 +1,15 @@
 import { type JSX, type ReactNode } from "react";
 import "./ProductCard.css";
 
+import FilledLoveIcon from "../../assets/icons/product_card/FilledLike.svg?react";
 import LoveIcon from "../../assets/icons/product_card/Like.svg?react";
 
 interface ProductCardProps {
   image: ReactNode;
   title: string;
   description: string;
-  price?: string;
+  price?: number;
+  isLiked: boolean;
 }
 
 function ProductCard({
@@ -15,6 +17,7 @@ function ProductCard({
   title,
   description,
   price,
+  isLiked,
 }: ProductCardProps): JSX.Element {
   return (
     <div className="product-card">
@@ -23,7 +26,11 @@ function ProductCard({
         <div className="product-description heading-6">
           <div className="product-name">
             <span>{title}</span>
-            <LoveIcon width="2.4rem" height="2.4rem" />
+            {isLiked ? (
+              <FilledLoveIcon width="2.4rem" height="2.4rem" />
+            ) : (
+              <LoveIcon width="2.4rem" height="2.4rem" />
+            )}
           </div>
           <span className="body-4">{description}</span>
         </div>
