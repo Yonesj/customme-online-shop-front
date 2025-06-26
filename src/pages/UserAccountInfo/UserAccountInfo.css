@@ -84,3 +84,8 @@ select {
     border-radius: 0.8rem;
     border: 1px solid #a72f3b;
 }
+
+.error-message {
+    color: #a72f3b;
+    font-size: 0.8rem;
+}
