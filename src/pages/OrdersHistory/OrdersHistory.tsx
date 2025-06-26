@@ -1,4 +1,4 @@
-import { type JSX, useState } from "react";
+import { type JSX, useEffect, useState } from "react";
 
 import "./OrdersHistory.css";
 
@@ -15,6 +15,9 @@ import OrderImg5 from "../../assets/images/order_history/order_pic5.svg";
 import OrderImg6 from "../../assets/images/order_history/order_pic6.svg";
 import OrderImg7 from "../../assets/images/order_history/order_pic7.svg";
 import OrdersNotFound from "../../assets/images/order_history/no_orders_found.svg";
+import { useAuth } from "../../context/AuthContext.tsx";
+import customerService from "../../services/customerServices.ts";
+import { CanceledError } from "axios";
 
 function OrdersHistory(): JSX.Element {
   const [tab, setTab] = useState("pending");
@@ -51,6 +54,41 @@ function OrdersHistory(): JSX.Element {
     },
   ];
 
+  const { isAuthenticated } = useAuth();
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const [profile, setProfile] = useState({
+    profile: ProfileImg,
+    full_name: "نگار زمانی",
+    email: "xxxxx@Yahoo.com",
+    credit: 100000,
+    designs_count: 45,
+    orders_count: 75,
+  });
+
+  useEffect(() => {
+    const { request, cancel } = customerService.retrieveProfile();
+
+    request
+      .then((res) => {
+        setProfile(res.data);
+      })
+      .catch((err) => {
+        if (err instanceof CanceledError) {
+          console.log(
+            "Profile fetch canceled by component unmount or new request",
+          );
+          return;
+        }
+        console.error("Failed to fetch profile:", err);
+        setError(
+          err.message || "متاسفانه بارگذاری اطلاعات پروفایل با مشکل مواجه شد.",
+        );
+      });
+
+    return () => cancel();
+  }, []);
+
   return (
     <>
       <NavBar />
@@ -60,12 +98,12 @@ function OrdersHistory(): JSX.Element {
 
         <div className="container body-1">
           <UserProfileCard
-            profilePicPath={ProfileImg}
-            username="نگار زمانی"
-            email="xxxxx@Yahoo.com"
-            credit="100000"
-            designsCount={45}
-            ordersCount={70}
+            profilePicPath={profile.profile}
+            username={profile.full_name}
+            email={profile.email}
+            credit={profile.credit}
+            designsCount={profile.designs_count}
+            ordersCount={profile.orders_count}
             selected="تاریخچه سفارشات"
           />
 
