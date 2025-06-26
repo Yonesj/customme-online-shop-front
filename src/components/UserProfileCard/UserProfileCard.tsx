@@ -1,7 +1,9 @@
 import { type JSX } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 import styles from "./UserProfileCard.module.css";
+
+import { useAuth } from "../../context/AuthContext.tsx";
 
 import CameraIcon from "../../assets/icons/user_profile/camera_icon.svg?react";
 import ListIcon1 from "../../assets/icons/user_profile/prof_icon_1.svg?react";
@@ -31,6 +33,8 @@ function UserProfileCard({
   ordersCount,
   selected,
 }: UserProfileCardProps): JSX.Element {
+  const { logout, isAuthenticated } = useAuth();
+  const navigate = useNavigate();
   const sections = [
     {
       icon: <ListIcon1 width="2.4rem" height="2.4rem" />,
@@ -62,12 +66,20 @@ function UserProfileCard({
       title: "اطلاعات حساب کاربری",
       link: "/my-profile/info",
     },
-    {
-      icon: <ListIcon7 width="2.4rem" height="2.4rem" />,
-      title: "خروج",
-      link: "#",
-    },
   ];
+
+  const handleLogout = () => {
+    if (!isAuthenticated) {
+      return;
+    }
+
+    try {
+      logout();
+      navigate("/");
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   return (
     <aside className={styles["profile-sidebar"]}>
@@ -114,10 +126,6 @@ function UserProfileCard({
             classes.push("border-b-[#ededed]");
           }
 
-          if (i === sections.length - 1) {
-            classes.push("border-none");
-          }
-
           return (
             <NavLink className="text-[#656565]" to={s.link}>
               <div key={i} className={classes.join(" ")}>
@@ -127,6 +135,14 @@ function UserProfileCard({
             </NavLink>
           );
         })}
+
+        <button
+          onClick={() => handleLogout()}
+          className="bg-transparent py-[0.8rem] flex justify-start items-center gap-[0.8rem] border-none"
+        >
+          <ListIcon7 width="2.4rem" height="2.4rem" />
+          <span className="text-[#656565] body-1">خروج</span>
+        </button>
       </div>
     </aside>
   );
