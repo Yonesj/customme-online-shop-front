@@ -9,11 +9,11 @@ function Hero(): JSX.Element {
       className="
         flex items-center bg-[#edd5d8]
         flex-col justify-center
-        w-full mx-[3.2rem] rounded-[0.8rem]
+        w-full rounded-[0.8rem]
         gap-[0.8rem] p-[0.8rem]
         my-[1.6rem]
 
-        xl:flex-row xl:justify-start xl:w-full xl:h-[44.4rem]
+        xl:flex-row xl:justify-start xl:w-full xl:h-[44.4rem] xl:mx-auto
         xl:rounded-[1.6rem] xl:gap-0 xl:px-[4.8rem] xl:py-[2.8rem]
       "
     >
