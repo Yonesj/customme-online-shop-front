@@ -1,7 +1,4 @@
-.product-card {
-    width: 28.8rem;
-    padding: 1.6rem;
-
+.product-card-box {
     border-radius: 1.6rem;
     border: 1px solid #cbcbcb;
 
@@ -10,7 +7,6 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    gap: 1.6rem;
 }
 
 .product-info {
@@ -49,7 +45,6 @@
     border-radius: 0.8rem;
     border: 1px solid #a72f3b;
 
-    padding: 0.8rem 2.4rem;
     color: #a72f3b;
 
     display: flex;
