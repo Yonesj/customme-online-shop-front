@@ -1,117 +1,9 @@
-/* 1. Design tokens as CSS variables */
-:root {
-    /* Typography – font families */
-    --font-primary: sans-serif;
-
-    /* Typography – headings (use rem: 1rem = 10px since html font‑size is 62.5%) */
-    --heading-1-size: 4.4rem;   /* 44px */
-    --heading-2-size: 4.0rem;   /* 40px */
-    --heading-3-size: 3.2rem;   /* 32px */
-    --heading-4-size: 2.4rem;   /* 24px */
-    --heading-5-size: 2.0rem;   /* 20px */
-    --heading-6-size: 1.8rem;   /* 18px */
-    --heading-lineh: 1.4;
-
-    /* Body text */
-    --body-1-size: 2.0rem;      /* 20px */
-    --body-2-size: 1.8rem;      /* 18px */
-    --body-3-size: 1.6rem;      /* 16px */
-    --body-4-size: 1.4rem;      /* 14px */
-    --body-5-size: 1.2rem;      /* 12px */
-    --body-lineh: 1.8;
-
-    /* Buttons */
-    --button-1-size: 1.6rem;    /* 16px */
-    --button-2-size: 1.4rem;    /* 14px */
-    --button-lineh: 1.8;
-
-    /* Colors – primary & palette */
-    /* PRIMARY */
-    --color-primary:       #A72F3B;
-
-    /* TINTS */
-    --tint-1:              #FFFFFF;
-    --tint-2:              #F6EAEB;
-    --tint-3:              #EDD5D8;
-    --tint-4:              #E5C1C4;
-    --tint-5:              #DCACB1;
-    --tint-6:              #CA8289;
-    --tint-7:              #B95692;
-
-    /* SHADES */
-    --shade-1:             #000000;
-    --shade-2:             #110506;
-    --shade-3:             #21090C;
-    --shade-4:             #320E12;
-    --shade-5:             #431318;
-    --shade-6:             #641C23;
-    --shade-7:             #86262F;
-
-    /* NEUTRAL GRAYS */
-    --gray-1:              #F8F8F8;
-    --gray-2:              #F0F0F0;
-    --gray-3:              #EDEDED;
-    --gray-4:              #D6D6D6;
-    --gray-5:              #C8C8C8;
-    --gray-6:              #AFAFAF;
-    --gray-7:              #989898;
-    --gray-8:              #656565;
-    --gray-9:              #414C23;
-    --gray-10:             #242424;
-
-    /* STATE COLORS */
-    --color-error:         #C30000;
-    --color-error-light:   #ED2E2E;
-    --color-warning:       #A9791C;
-    --color-warning-light: #F4B740;
-    --color-success:       #00966D;
-    --color-success-light: #00B48B;
-
-    /* BACKGROUND COLORS */
-    --bg-error:            #FFF2F2;
-    --bg-warning:          #FFF8E1;
-    --bg-success:          #F3FDAF;
-    /* … */
-
-    /* Shadows */
-    --shadow-sm:        0 9px 12px rgba(0,0,0,0.1);
-
-    /* Spacing scale */
-    --space-4:    0.4rem;   /* 4px  */
-    --space-8:    0.8rem;   /* 8px  */
-    --space-12:   1.2rem;   /* 12px */
-    --space-16:   1.6rem;   /* 16px */
-    --space-24:   2.4rem;   /* 24px */
-    --space-28:   2.8rem;   /* 28px */
-    --space-32:   3.2rem;   /* 32px */
-    --space-36:   3.6rem;   /* 36px */
-    --space-40:   4.0rem;   /* 40px */
-    --space-44:   4.4rem;   /* 44px */
-    --space-48:   4.8rem;   /* 48px */
-    --space-52:   5.2rem;   /* 52px */
-    --space-60:   6.0rem;   /* 60px */
-    --space-64:   6.4rem;   /* 64px */
-    --space-68:   6.8rem;   /* 68px */
-    --space-72:   7.2rem;   /* 72px */
-    --space-76:   7.6rem;   /* 76px */
-    --space-80:   8.0rem;   /* 80px */
-    --space-96:   9.6rem;   /* 96px */
-    --space-128: 12.8rem;   /* 128px */
-
-    /* Radii */
-    --radius-8:  0.8rem;
-    --radius-12: 1.2rem;
-    --radius-16: 1.6rem;
-}
-
-/* 2. Global reset */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* 3. Base html & body */
 html {
     font-size: 62.5%;      /* 1rem = 10px */
     overflow-x: hidden;
@@ -119,7 +11,6 @@ html {
 }
 
 body {
-    font-family: var(--font-primary);
     direction: rtl;
 }
 
