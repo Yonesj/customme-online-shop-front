@@ -13,17 +13,31 @@ function SectionHeader({
   hasBtn,
 }: SectionHeaderProps): JSX.Element {
   return (
-    <div className="section-header">
+    <div className="section-header mb-[1.6rem] xl:[2.4rem]">
       <div className="section-title">
-        {icon}
-        <h1 className="heading-4">{title}</h1>
+        <span className="hidden xl:inline-block">{icon}</span>
+        <h1
+          className="
+            caption-1
+            xl:!font-bold xl:!text-[2.4rem] xl:!leading-[140%]
+          "
+        >
+          {title}
+        </h1>
       </div>
 
-      <div className="section-divider"></div>
+      <div className="flex-1 h-px bg-transparent xl:bg-[#d6d6d6]"></div>
 
       {hasBtn && (
         <div className="more-btn">
-          <span className="button-2">مشاهده بیشتر</span>
+          <span
+            className="
+              caption-4
+              xl:!font-medium xl:!text-[1.4rem] xl:!leading-[2.4rem]
+            "
+          >
+            مشاهده بیشتر
+          </span>
         </div>
       )}
     </div>

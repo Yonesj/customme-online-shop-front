@@ -5,21 +5,12 @@
     display: flex;
     align-items: center;
     gap: 1.6rem;
-
-    margin-bottom: 2.4rem;
 }
 
 .section-title {
     display: flex;
     align-items: center;
     gap: 0.8rem;
-}
-
-.section-divider {
-    flex: 1;
-
-    height: 1px;
-    background-color: #d6d6d6;
 }
 
 .more-btn {
