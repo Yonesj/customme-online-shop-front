@@ -22,7 +22,7 @@ function CallToAction(): JSX.Element {
         <img src={WeddingImg4} alt="wedding-img" className="w-full h-auto" />
       </div>
 
-      <div className="flex items-center gap-[1.2rem] xl:hidden">
+      <div className="flex items-center justify-center gap-[2rem] xl:hidden">
         <img src={WeddingImg1Mobile} alt="wedding-img" />
         <img src={WeddingImg2Mobile} alt="wedding-img" />
         <img src={WeddingImg3Mobile} alt="wedding-img" />
