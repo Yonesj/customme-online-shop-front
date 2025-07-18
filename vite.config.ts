@@ -9,6 +9,8 @@ export default defineConfig({
     svgr({
       svgrOptions: { icon: true },
     }),
-    tailwindcss(),
+    tailwindcss({
+      config: "./tailwind.config.js",
+    }),
   ],
 });
