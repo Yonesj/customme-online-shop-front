@@ -2,8 +2,8 @@ import { type JSX } from "react";
 
 import "./Home.css";
 
-import NavBar from "../../components/NavBar.tsx";
-import Hero from "../../components/Hero.tsx";
+import NavBar from "../../components/NavBar/NavBar.tsx";
+import Hero from "../../components/Hero";
 import Category from "../../components/Category";
 import SectionHeader from "../../components/SectionHeader";
 import ProductCard from "../../components/ProductCard";
@@ -42,6 +42,7 @@ import DadImg from "../../assets/images/gifts/dadi 1.svg";
 import MomImg from "../../assets/images/gifts/mom 1.svg";
 
 import InfoImg from "../../assets/images/new_designs_pic.svg";
+import InfoImgMobile from "../../assets/images/new_designs_mobile.svg";
 
 function Home(): JSX.Element {
   const categories = [
@@ -83,7 +84,8 @@ function Home(): JSX.Element {
     <>
       <NavBar />
 
-      <div className="px-[10.8rem]">
+      {/*<div className="px-[3.2rem] xl:px-[10.8rem] w-[36rem] mx-auto xl:w-auto xl:mx-0">*/}
+      <div className="xl:px-[10.8rem] w-[36rem] mx-auto xl:w-auto xl:mx-0">
         <Hero />
 
         {/* دسته بندی محصولات */}
@@ -94,7 +96,7 @@ function Home(): JSX.Element {
             hasBtn={false}
           />
 
-          <div className="category-grid">
+          <div className="flex align-center gap-[1.2rem] my-[1.6rem] xl:justify-between">
             {categories.map((item, index) => (
               <Category key={index} text={item.text} image={item.image} />
             ))}
@@ -102,96 +104,146 @@ function Home(): JSX.Element {
         </div>
 
         {/* پر فروش ترین ها */}
-        <div className="section-container">
+        <div className="mb-[2.4rem] xl:mb-[4.8rem]">
           <SectionHeader
             icon={<MedalIcon width="4rem" height="4rem" />}
             title="پر فروش ترین ها"
             hasBtn={true}
           />
 
-          <div className="grid-4x2">
-            {[1, 2, 3, 4, 5, 6, 7, 8].map((i) => (
-              <ProductCard
-                key={i}
-                image={<img src={ProductImg4} alt="product_img4" />}
-                title="تیشرت زنانه"
-                description="دارای رنگبندی، قابل طراحی"
-                price="150000"
-              />
+          <div
+            className="
+              w-full mb-[3.2rem] grid gap-[2.4rem]
+              grid-cols-2
+              xl:grid-cols-4 xl:grid-row-2 xl:grid-flow-row
+            "
+          >
+            {[1, 2, 3, 4, 5, 6, 7, 8].map((i, idx) => (
+              <div key={i} className={idx >= 4 ? "hidden xl:block" : ""}>
+                <ProductCard
+                  key={i}
+                  image={<img src={ProductImg4} alt="product_img4" />}
+                  title="تیشرت زنانه"
+                  description="دارای رنگبندی، قابل طراحی"
+                  price="150000"
+                />
+              </div>
             ))}
           </div>
         </div>
 
         {/* فروش ویژه */}
-        <div className="section-container">
+        <div className="mb-[2.4rem] xl:mb-[4.8rem]">
           <SectionHeader
             icon={<DiscountIcon width="4rem" height="4rem" />}
             title="فروش ویژه"
             hasBtn={false}
           />
 
-          <div className="grid-4x2">
+          <div
+            className="
+              w-full mb-[3.2rem] grid grid-cols-4 grid-rows-2
+              gap-[1.2rem]
+              xl:gap-[2.4rem]
+            "
+          >
             {[
               DiscountImg1,
               DiscountImg2,
               DiscountImg3,
               DiscountImg4,
               DiscountImg5,
-            ].map((imgSource) => (
+            ].map((imgSource, index) => (
               <img
-                className="discount-img"
+                key={index}
                 src={imgSource}
                 alt="discount image"
+                className={`
+                  w-full h-auto
+                  ${index === 0 ? "col-span-2 row-span-2" : ""}
+                `}
               />
             ))}
           </div>
         </div>
 
         {/* طرح های پرطرفدار */}
-        <div className="section-container">
+        <div className="mb-[2.4rem] xl:mb-[4.8rem]">
           <SectionHeader
             icon={<MostPopularSctHeaderIcon width="4rem" height="4rem" />}
             title="طرح های پرطرفدار"
             hasBtn={true}
           />
 
-          <div className="grid-4x2">
-            {[1, 2, 3, 4, 5, 6, 7, 8].map((i) => (
-              <ProductCard
-                key={i}
-                image={<img src={ProductImg1} alt="product image" />}
-                title="کیف زنانه"
-                description="دارای رنگبندی، قابل طراحی"
-              />
+          <div
+            className="
+              w-full mb-[3.2rem] grid gap-[2.4rem]
+              grid-cols-2
+              xl:grid-cols-4 xl:grid-row-2 xl:grid-flow-row
+            "
+          >
+            {[1, 2, 3, 4, 5, 6, 7, 8].map((i, idx) => (
+              <div key={i} className={idx >= 4 ? "hidden xl:block" : ""}>
+                <ProductCard
+                  key={i}
+                  image={<img src={ProductImg1} alt="product image" />}
+                  title="کیف زنانه"
+                  description="دارای رنگبندی، قابل طراحی"
+                />
+              </div>
             ))}
           </div>
         </div>
 
         {/* طراحان برتر */}
-        <div className="section-container">
+        <div className="mb-[2.4rem] xl:mb-[4.8rem]">
           <SectionHeader
             icon={<StarIcon width="4rem" height="4rem" />}
             title="طراحان برتر"
             hasBtn={false}
           />
 
-          <div className="grid-4x2">
-            {[1, 2, 3, 4, 5, 6, 7, 8].map((i) => (
-              <DesignerProfileCard
-                key={i}
-                profileImg={<img src={ProfileImg} alt="profile image" />}
-                name="نگار زمانی"
-                showcases={[
-                  <img src={ShowCaseImg} alt="show case 1" />,
-                  <img src={ShowCaseImg} alt="show case 1" />,
-                  <img src={ShowCaseImg} alt="show case 1" />,
-                ]}
-              />
+          <div
+            className="
+              w-full mb-[3.2rem] grid gap-[2.4rem]
+              grid-cols-2
+              xl:grid-cols-4 xl:grid-row-2 xl:grid-flow-row
+            "
+          >
+            {[1, 2, 3, 4, 5, 6, 7, 8].map((i, idx) => (
+              <div key={i} className={idx >= 4 ? "hidden xl:block" : ""}>
+                <DesignerProfileCard
+                  key={i}
+                  profileImg={
+                    <img
+                      src={ProfileImg}
+                      alt="profile image"
+                      className="
+                        h-auto
+                        w-[5.6rem]
+                        xl:w-[8.2rem]
+                      "
+                    />
+                  }
+                  name="نگار زمانی"
+                  showcases={[
+                    <img src={ShowCaseImg} alt="show case 1" />,
+                    <img src={ShowCaseImg} alt="show case 1" />,
+                    <img src={ShowCaseImg} alt="show case 1" />,
+                  ]}
+                />
+              </div>
             ))}
           </div>
         </div>
 
-        <div className="gift-section">
+        <div
+          className="
+            mb-[4.8rem] flex items-center gap-[2.4rem]
+            flex-col
+            xl:flex-row
+          "
+        >
           <GiftBanner
             title="محصولات مناسب هدیه دادن به آقایان"
             imagePath={DadImg}
@@ -202,24 +254,41 @@ function Home(): JSX.Element {
           />
         </div>
 
-        <div className="section-container">
+        <div className="mb-[2.4rem] xl:mb-[4.8rem]">
           <SectionHeader
             icon={<BrushIcon width="4rem" height="4rem" />}
             title="جدیدترین طرح های هفته"
             hasBtn={true}
           />
 
-          <div className="grid-4x2">
-            <img src={InfoImg} alt="information about designs" />
+          <div
+            className="
+              w-full mb-[3.2rem] grid gap-[2.4rem]
+              grid-cols-2
+              xl:grid-cols-4 xl:grid-row-2 xl:grid-flow-row
+            "
+          >
+            <img
+              className="col-span-2 xl:hidden"
+              src={InfoImgMobile}
+              alt="information about designs"
+            />
+            <img
+              className="hidden xl:block"
+              src={InfoImg}
+              alt="information about designs"
+            />
 
-            {[1, 2, 3, 4, 5, 6, 7].map((i) => (
-              <ProductCard
-                key={i}
-                image={<img src={ProductImg4} alt="product_img4" />}
-                title="تیشرت زنانه"
-                description="دارای رنگبندی، قابل طراحی"
-                price="150000"
-              />
+            {[1, 2, 3, 4, 5, 6, 7].map((i, idx) => (
+              <div key={i} className={idx >= 4 ? "hidden xl:block" : ""}>
+                <ProductCard
+                  key={i}
+                  image={<img src={ProductImg4} alt="product_img4" />}
+                  title="تیشرت زنانه"
+                  description="دارای رنگبندی، قابل طراحی"
+                  price="150000"
+                />
+              </div>
             ))}
           </div>
         </div>
@@ -227,14 +296,20 @@ function Home(): JSX.Element {
         <CallToAction />
 
         {/* علاقمندی ها */}
-        <div className="section-container">
+        <div className="mb-[2.4rem] xl:mb-[4.8rem]">
           <SectionHeader
             icon={<MyFavoriteSctHeaderIcon width="4rem" height="4rem" />}
             title="علاقمندی ها"
             hasBtn={false}
           />
 
-          <div className="product-row">
+          <div
+            className="
+              w-full
+              grid grid-cols-2 gap-[1.6rem]
+              xl:flex xl:items-center xl:justify-between xl:relative
+            "
+          >
             {[1, 2, 3, 4].map((i) => (
               <ProductCard
                 key={i}
@@ -242,10 +317,17 @@ function Home(): JSX.Element {
                 title="تیشرت زنانه"
                 description="دارای رنگبندی، قابل طراحی"
                 price="150000"
+                isLiked={true}
               />
             ))}
 
-            <div className="left-btn">
+            <div
+              className="
+                home-left-btn
+                hidden
+                xl:flex
+              "
+            >
               <LeftArrowIcon
                 width="24"
                 height="24"
