@@ -1,8 +1,8 @@
 import { type JSX, useEffect, useRef, useState } from "react";
 
-import PrimaryButton from "./PrimaryButton.tsx";
-import MagicPenIcon from "../assets/icons/magicpen.svg?react";
-import IphoneImg from "../assets/images/iphone_img.svg";
+import PrimaryButton from "../PrimaryButton/PrimaryButton.tsx";
+import MagicPenIcon from "../../assets/icons/magicpen.svg?react";
+import IphoneImg from "../../assets/images/iphone_img.svg";
 
 interface NavBtn {
   text: string;
@@ -52,7 +52,7 @@ function NavBar(): JSX.Element {
   return (
     <nav
       className="
-        flex items-center justify-between
+        hidden xl:flex items-center justify-between
         gap-[2.4rem]
         px-[10.8rem]
         py-[2.4rem] mb-[1.6rem]
