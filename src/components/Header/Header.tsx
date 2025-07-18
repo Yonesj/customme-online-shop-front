@@ -12,10 +12,9 @@ function Header(): JSX.Element {
   return (
     <header
       className="
-        flex items-center justify-between
-        w-full xl:w-[144rem]
+        flex items-center justify-between mx-auto
+        w-[36rem] xl:w-[144rem]
         h-[4rem] xl:h-[10.4rem]
-        mx-[3.2rem] xl:mx-auto
         gap-[1.6rem] xl:gap-[3.2rem]
         py-[4.8rem] xl:py-[1.2rem]
         xl:border-b xl:border-[#f0f0f0]
