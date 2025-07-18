@@ -16,7 +16,14 @@ function PrimaryButton({ text, icon, className }: Props): JSX.Element {
       )}
     >
       {icon}
-      <span className="button-2">{text}</span>
+      <span
+        className="
+          caption-4
+          xl:!font-medium xl:!text-[1.4rem] xl:!leading-[2.4rem]
+        "
+      >
+        {text}
+      </span>
     </button>
   );
 }
