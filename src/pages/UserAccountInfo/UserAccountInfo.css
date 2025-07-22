@@ -59,8 +59,8 @@ label {
     color: #cbcbcb;
 }
 
-input,
-select {
+.form-group input,
+.form-group select {
     width: 100%;
     padding: 0.8rem;
 
