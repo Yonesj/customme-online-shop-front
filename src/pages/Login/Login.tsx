@@ -104,7 +104,7 @@ function Login(): JSX.Element {
               </label>
               <input
                 {...register("email")}
-                className="body-5 w-full p-[0.8rem] border-[#cbcbcb] rounded-[0.8rem]"
+                className="body-5 w-full p-[0.8rem] border border-[#cbcbcb] rounded-[0.8rem]"
                 id="email"
                 type="email"
               />
@@ -124,7 +124,7 @@ function Login(): JSX.Element {
               </label>
               <input
                 {...register("password")}
-                className="body-5 w-full p-[0.8rem] border-[#cbcbcb] rounded-[0.8rem]"
+                className="body-5 w-full p-[0.8rem] border border-[#cbcbcb] rounded-[0.8rem]"
                 id="password"
                 type="password"
                 aria-invalid={errors.password ? "true" : "false"}
