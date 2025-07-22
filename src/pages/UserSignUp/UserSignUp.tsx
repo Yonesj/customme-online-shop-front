@@ -1,5 +1,6 @@
 import { type JSX } from "react";
 import { type SubmitHandler, useForm } from "react-hook-form";
+import { NavLink } from "react-router-dom";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useNavigate } from "react-router-dom";
@@ -18,10 +19,12 @@ import { JobOptions } from "../../enums";
 import Header from "../../components/Header";
 import Stepper from "../../components/Stepper";
 import Footer from "../../components/Footer";
+
 import Step1 from "../../assets/icons/stepper/user.svg?react";
 import Step2 from "../../assets/icons/stepper/call.svg?react";
 import CalenderIcon from "../../assets/icons/calendar.svg?react";
 import SignUpImg from "../../assets/images/designer_sign_up_img.svg";
+import RightArrowIcon from "../../assets/icons/arrows/arrow-right.svg?react";
 
 const educationEnumKeys = Object.keys(EducationOptions);
 const jobEnumKeys = Object.keys(JobOptions);
@@ -100,17 +103,49 @@ function UserSignUp(): JSX.Element {
 
   return (
     <>
-      <Header />
+      <div className="hidden xl:block">
+        <Header />
+      </div>
+
+      <div
+        className="
+          w-full flex items-center gap-[0.8rem] px-[3.2rem] py-[1.6rem] border-b-3 border-b-[#EDEDED]
+          xl:hidden
+        "
+      >
+        <NavLink to="/users/login">
+          <RightArrowIcon width="2rem" height="2rem" />
+        </NavLink>
+        <span className="text-[#242424] body-5"> فرم ثبت نام</span>
+      </div>
 
       <main>
         <Stepper currentStepIndex={0} steps={steps} />
 
-        <h2 className="heading-6 color-[#b95962] px-[10.8rem] mb-[3.2rem]">
+        <h2
+          className="
+            hidden
+            xl:block heading-6 color-[#b95962] px-[10.8rem] mb-[3.2rem]
+          "
+        >
           فرم ثبت اطلاعات
         </h2>
 
-        <div className={styles["form-section"]}>
-          <form className={styles.form} onSubmit={handleSubmit(processForm)}>
+        <div
+          className="
+            flex
+            flex-col
+            xl:flex-row xl:justify-between xl:gap-[4.4rem] xl:px-[10.8rem] xl:mb-[4rem]
+          "
+        >
+          <form
+            className="
+              flex flex-col items-center gap-[1.6rem] mb-[4rem] w-[28.8rem] mx-auto
+              xl:grid xl:grid-cols-2 xl:gap-y-[1.4rem] xl:gap-x-[2.4rem] xl:w-[64.8rem]
+              xl:border xl:border-[#ededed] xl:rounded-[0.8rem] xl:p-[2.4rem] xl:mx-0
+            "
+            onSubmit={handleSubmit(processForm)}
+          >
             <div className={styles["form-group"]}>
               <label htmlFor="national_id" className="body-4">
                 کد ملی
@@ -245,20 +280,40 @@ function UserSignUp(): JSX.Element {
               />
             </div>
 
-            <div className={styles["form-footer"]}>
-              <button className={styles["form-footer-btn"]} type="submit">
+            <div
+              className="
+                self-end justify-self-end
+                xl:row-[5] xl:col-[2]
+              "
+            >
+              <button
+                className="
+                  inline-block text-[#FFF] bg-[#a72f3b] py-[0.8rem] border border-[#a72f3b] rounded-[0.8rem]
+                  px-[2.4rem]
+                  xl:px-[4rem]
+                "
+                type="submit"
+              >
                 <span className="button-2"> مرحله بعدی</span>
               </button>
             </div>
           </form>
 
-          <figure>
+          <figure
+            className="
+              h-auto
+              w-[18.4rem] order-first self-center
+              xl:w-[52rem] xl:order-last
+            "
+          >
             <img src={SignUpImg} alt="illustration" />
           </figure>
         </div>
       </main>
 
-      <Footer />
+      <div className="hidden xl:block">
+        <Footer />
+      </div>
     </>
   );
 }
