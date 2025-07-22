@@ -1,16 +1,3 @@
-.profile-sidebar {
-    width: 39.2rem;
-    padding: 2.4rem 3.2rem;
-
-    border: 1px solid #ededed;
-    border-radius: 1.6rem;
-    color: #656565;
-
-    display: flex;
-    flex-direction: column;
-    gap: 1.6rem;
-}
-
 .top-prof {
     display: flex;
     flex-direction: column;

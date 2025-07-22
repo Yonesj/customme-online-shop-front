@@ -82,7 +82,13 @@ function UserProfileCard({
   };
 
   return (
-    <aside className={styles["profile-sidebar"]}>
+    <aside
+      className="
+        flex flex-col gap-[1.6rem] shrink-0 text-[#656565] w-[39.2rem] py-[2.4rem] px-[3.2rem] border-[#ededed]
+        border-b-4
+        xl:border xl:rounded-[1.6rem]
+      "
+    >
       <div className={styles["top-prof"]}>
         <div className={styles.information}>
           <div className={styles["profile-picture"]}>
