@@ -136,13 +136,22 @@ function UserProfile(): JSX.Element {
 
   return (
     <>
-      <Header />
-      <NavBar />
+      <div className="hidden xl:block">
+        <Header />
+        <NavBar />
+      </div>
 
-      <main className="px-[10.8rem]">
-        <h2 className="heading-3 px-[10.8rem] mb-[3.2rem]">پروفایل</h2>
+      <main className="w-[32rem] mx-auto xl:w-auto xl:px-[10.8rem]">
+        <h2 className="heading-3 mb-[3.2rem] hidden xl:block">پروفایل</h2>
 
-        <div className="container body-1">
+        <div
+          className="
+            body-1
+            flex justify-start
+            flex-col items-center
+            xl:gap-[2rem] xl:mb-[10.8rem] xl:flex-row xl:items-start
+          "
+        >
           <UserProfileCard
             profilePicPath={profile.profile}
             username={profile.full_name}
@@ -153,86 +162,145 @@ function UserProfile(): JSX.Element {
             selected="داشبورد"
           />
 
-          <div className="profile-main-sct">
-            <header>
-              <h4 className="heading-4">سفارشات من</h4>
-              <div className="body-2 my-order-details">
-                <div className="my-orders-detail-col">
+          <div
+            className="
+              w-[32rem] mx-auto
+              xl:border xl:border-[#ededed] xl:rounded-[1.6rem] xl:w-full xl:mx-0
+            "
+          >
+            <header
+              className="
+                border-b border-[#ededed] flex flex-col
+                justify-between py-[2.4rem] gap-[2.4rem]
+                xl:justify-start xl:gap-[3.2rem] xl:px-[3.2rem]
+              "
+            >
+              <h4
+                className="
+                  heading-6
+                  xl:!font-bold xl:!text-[2.4rem] xl:!leading-[140%]
+                "
+              >
+                سفارشات من
+              </h4>
+
+              {/*<div className="body-2 my-order-details">*/}
+              <div className="body-2 flex xl:items-stretch justify-between text-[#434343]">
+                {/*<div className="my-orders-detail-col">*/}
+                <div
+                  className="
+                    flex flex-col justify-center gap-[1.6rem]
+                    xl:px-[4.8rem]
+                  "
+                >
                   <div className="order-detail">
-                    <OrderIcon1 width="2.4rem" height="2.4rem" />
+                    <OrderIcon1 className="mt-[0.2rem] w-[2rem] h-[2rem] xl:w-[2.4rem] xl:h-[2.4rem]" />
                     <div>
-                      <span className="body-2">
+                      <span className="body-4 xl:!font-normal xl:!text-[1.8rem] xl:!leading-[180%]">
                         {orderDetails.current_count} سفارش
                       </span>
-                      <span className="body-5">جاری</span>
+                      <span className="caption-4 xl:!font-normal xl:!text-[1.2rem] xl:!leading-[180%]">
+                        جاری
+                      </span>
                     </div>
                   </div>
 
                   <div className="order-detail">
-                    <OrderIcon2 width="2.4rem" height="2.4rem" />
+                    <OrderIcon2 className="mt-[0.2rem] w-[2rem] h-[2rem] xl:w-[2.4rem] xl:h-[2.4rem]" />
                     <div>
-                      <span className="body-2">
+                      <span className="body-4 xl:!font-normal xl:!text-[1.8rem] xl:!leading-[180%]">
                         {orderDetails.comment_count} نظر
                       </span>
-                      <span className="body-5">ثبت شده</span>
+                      <span className="caption-4 xl:!font-normal xl:!text-[1.2rem] xl:!leading-[180%]">
+                        ثبت شده
+                      </span>
                     </div>
                   </div>
                 </div>
 
-                <div className="vertical-separator"></div>
+                <div className="bg-[#ededed] w-[1px] hidden xl:block"></div>
 
-                <div className="my-orders-detail-col">
+                <div
+                  className="
+                    flex flex-col justify-center gap-[1.6rem]
+                    xl:px-[4.8rem]
+                  "
+                >
                   <div className="order-detail">
-                    <OrderIcon3 width="2.4rem" height="2.4rem" />
+                    <OrderIcon3 className="mt-[0.2rem] w-[2rem] h-[2rem] xl:w-[2.4rem] xl:h-[2.4rem]" />
                     <div>
-                      <span className="body-2">
+                      <span className="body-4 xl:!font-normal xl:!text-[1.8rem] xl:!leading-[180%]">
                         {orderDetails.completed_count} سفارش
                       </span>
-                      <span className="body-5">ارسال شده</span>
+                      <span className="caption-4 xl:!font-normal xl:!text-[1.2rem] xl:!leading-[180%]">
+                        ارسال شده
+                      </span>
                     </div>
                   </div>
 
                   <div className="order-detail">
-                    <OrderIcon4 width="2.4rem" height="2.4rem" />
+                    <OrderIcon4 className="mt-[0.2rem] w-[2rem] h-[2rem] xl:w-[2.4rem] xl:h-[2.4rem]" />
                     <div>
-                      <span className="body-2">
+                      <span className="body-4 xl:!font-normal xl:!text-[1.8rem] xl:!leading-[180%]">
                         {orderDetails.canceled_count} سفارش
                       </span>
-                      <span className="body-5">لغو شده</span>
+                      <span className="caption-4 xl:!font-normal xl:!text-[1.2rem] xl:!leading-[180%]">
+                        لغو شده
+                      </span>
                     </div>
                   </div>
                 </div>
 
-                <div className="vertical-separator"></div>
+                {/*<div className="vertical-separator"></div>*/}
+                <div className="bg-[#ededed] w-[1px] hidden xl:block"></div>
 
-                <div className="my-orders-detail-col">
+                <div
+                  className="
+                    flex flex-col justify-center gap-[1.6rem]
+                    xl:px-[4.8rem]
+                  "
+                >
                   <div className="order-detail">
-                    <OrderIcon5 width="2.4rem" height="2.4rem" />
+                    <OrderIcon5 className="mt-[0.2rem] w-[2rem] h-[2rem] xl:w-[2.4rem] xl:h-[2.4rem]" />
                     <div>
-                      <span className="body-2">
+                      <span className="body-4 xl:!font-normal xl:!text-[1.8rem] xl:!leading-[180%]">
                         {orderDetails.gallery_count} محصول
                       </span>
-                      <span className="body-5">در گالری</span>
+                      <span className="caption-4 xl:!font-normal xl:!text-[1.2rem] xl:!leading-[180%]">
+                        در گالری
+                      </span>
                     </div>
                   </div>
 
                   <div className="order-detail">
-                    <OrderIcon6 width="2.4rem" height="2.4rem" />
+                    <OrderIcon6 className="mt-[0.2rem] w-[2rem] h-[2rem] xl:w-[2.4rem] xl:h-[2.4rem]" />
                     <div>
-                      <span className="body-2">
+                      <span className="body-4 xl:!font-normal xl:!text-[1.8rem] xl:!leading-[180%]">
                         {orderDetails.gallery_count} محصول
                       </span>
-                      <span className="body-5">فیزیکی</span>
+                      <span className="caption-4 xl:!font-normal xl:!text-[1.2rem] xl:!leading-[180%]">
+                        فیزیکی
+                      </span>
                     </div>
                   </div>
                 </div>
               </div>
             </header>
 
-            <div className="sub-section h-[50rem]">
+            <div
+              className="
+                flex flex-col relative gap-[2.4rem] border-b border-[#ededed] py-[2.4rem] h-[40rem]
+                xl:pr-[3.2rem] xl:h-[50rem]
+              "
+            >
               <div className="sub-section-header">
-                <h4 className="heading-4">علاقه مندی های من</h4>
-                <a href="#" className="button-2 more-info-btn">
+                <h4 className="heading-6 xl:!font-bold xl:!text-[2.4rem] xl:!leading-[140%]">
+                  علاقه مندی های من
+                </h4>
+                <a
+                  href="#"
+                  className="button-2 text-[#a72f3b] py-[0.8rem] xl:px-[2.4rem]"
+                >
                   مشاهده بیشتر
                 </a>
               </div>
@@ -252,7 +320,7 @@ function UserProfile(): JSX.Element {
                 ))}
 
                 {likedProducts?.length >= 3 && (
-                  <button className="left-btn">
+                  <button className="left-btn hidden xl:flex">
                     <LeftArrowIcon
                       width="2.4rem"
                       height="2.4rem"
@@ -264,10 +332,20 @@ function UserProfile(): JSX.Element {
               </div>
             </div>
 
-            <div className="sub-section h-[50rem]">
+            <div
+              className="
+                flex flex-col relative gap-[2.4rem] border-b border-[#ededed] py-[2.4rem]
+                xl:pr-[3.2rem] xl:h-[50rem]
+              "
+            >
               <div className="sub-section-header">
-                <h4 className="heading-4">خرید های پرتکرار من</h4>
-                <a href="#" className="button-2 more-info-btn">
+                <h4 className="heading-6 xl:!font-bold xl:!text-[2.4rem] xl:!leading-[140%]">
+                  خرید های پرتکرار من
+                </h4>
+                <a
+                  href="#"
+                  className="button-2 text-[#a72f3b] py-[0.8rem] xl:px-[2.4rem]"
+                >
                   مشاهده بیشتر
                 </a>
               </div>
@@ -284,7 +362,7 @@ function UserProfile(): JSX.Element {
                   />
                 ))}
 
-                <button className="left-btn">
+                <button className="left-btn hidden xl:flex">
                   <LeftArrowIcon
                     width="2.4rem"
                     height="2.4rem"
@@ -295,10 +373,20 @@ function UserProfile(): JSX.Element {
               </div>
             </div>
 
-            <div className="sub-section h-[50rem]">
+            <div
+              className="
+                flex flex-col relative gap-[2.4rem] py-[2.4rem]
+                xl:pr-[3.2rem] xl:pl-0 xl:h-[50rem]
+              "
+            >
               <div className="sub-section-header">
-                <h4 className="heading-4">گالری من</h4>
-                <a href="#" className="button-2 more-info-btn">
+                <h4 className="heading-6 xl:!font-bold xl:!text-[2.4rem] xl:!leading-[140%]">
+                  گالری من
+                </h4>
+                <a
+                  href="#"
+                  className="button-2 text-[#a72f3b] py-[0.8rem] xl:px-[2.4rem]"
+                >
                   مشاهده بیشتر
                 </a>
               </div>
@@ -314,7 +402,7 @@ function UserProfile(): JSX.Element {
                   />
                 ))}
 
-                <button className="left-btn">
+                <button className="left-btn hidden xl:flex">
                   <LeftArrowIcon
                     width="2.4rem"
                     height="2.4rem"
@@ -328,7 +416,7 @@ function UserProfile(): JSX.Element {
         </div>
       </main>
 
-      <Footer />
+      <Footer showAll={false} />
     </>
   );
 }
