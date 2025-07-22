@@ -1,21 +1,24 @@
 import { type JSX, useEffect } from "react";
 import styles from "./UserSignUp.module.css";
 
+import { NavLink } from "react-router-dom";
 import { useForm, type SubmitHandler } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useNavigate, useLocation } from "react-router-dom";
 import { toast } from "react-toastify";
 import { ProvinceOptions } from "../../enums/Province.ts";
-import contactInfoService from "../../services/contactInfoServices";
+import { CanceledError } from "axios";
 
+import contactInfoService from "../../services/contactInfoServices";
 import Header from "../../components/Header";
 import Stepper from "../../components/Stepper";
 import Footer from "../../components/Footer";
+
 import Step1 from "../../assets/icons/stepper/user.svg?react";
 import Step2 from "../../assets/icons/stepper/call.svg?react";
 import SignUpImg2 from "../../assets/images/user_sign_up_img_pg2.svg";
-import { CanceledError } from "axios";
+import RightArrowIcon from "../../assets/icons/arrows/arrow-right.svg?react";
 
 interface RegisterContactInfoPayload {
   user: number;
@@ -116,18 +119,47 @@ function UserSignUp(): JSX.Element {
 
   return (
     <>
-      <Header />
+      <div className="hidden xl:block">
+        <Header />
+      </div>
+
+      <div
+        className="
+          w-full flex items-center gap-[0.8rem] px-[3.2rem] py-[1.6rem] border-b-3 border-b-[#EDEDED]
+          xl:hidden
+        "
+      >
+        <NavLink to="/users/sign-up">
+          <RightArrowIcon width="2rem" height="2rem" />
+        </NavLink>
+        <span className="text-[#242424] body-5"> فرم ثبت نام</span>
+      </div>
 
       <main>
         <Stepper currentStepIndex={1} steps={steps} />
 
-        <h2 className="heading-6 color-[#b95962] px-[10.8rem] mb-[3.2rem]">
+        <h2
+          className="
+            hidden
+            xl:block heading-6 color-[#b95962] px-[10.8rem] mb-[3.2rem]
+          "
+        >
           فرم ثبت اطلاعات
         </h2>
 
-        <div className={styles["form-section"]}>
+        <div
+          className="
+            flex
+            flex-col
+            xl:flex-row xl:justify-between xl:gap-[4.4rem] xl:px-[10.8rem] xl:mb-[4rem]
+          "
+        >
           <form
-            className={styles.form}
+            className="
+              flex flex-col items-center gap-[1.6rem] mb-[4rem] w-[28.8rem] mx-auto
+              xl:grid xl:grid-cols-2 xl:gap-y-[1.4rem] xl:gap-x-[2.4rem] xl:w-[64.8rem]
+              xl:border xl:border-[#ededed] xl:rounded-[0.8rem] xl:p-[2.4rem] xl:mx-0
+            "
             onSubmit={handleSubmit(processContactForm)}
           >
             <div className={styles["form-group"]}>
@@ -244,20 +276,52 @@ function UserSignUp(): JSX.Element {
               )}
             </div>
 
-            <div className={styles["form-footer"]}>
-              <button className={styles["form-footer-btn"]} type="submit">
+            <div
+              className="
+                w-full flex justify-between
+                xl:w-auto xl:row-[5] xl:col-[2] xl:self-end xl:justify-self-end
+              "
+            >
+              <button
+                className="
+                  inline-block text-[#A72F3B] bg-transparent py-[0.8rem]
+                  border border-[#A72F3B] rounded-[0.8rem] px-[2.4rem]
+                  xl:hidden
+                "
+              >
+                <NavLink to="/users/sign-up">
+                  <span className="button-2">مرحله قبل</span>
+                </NavLink>
+              </button>
+
+              <button
+                className="
+                  inline-block text-[#FFF] bg-[#a72f3b] py-[0.8rem] border border-[#a72f3b] rounded-[0.8rem]
+                  px-[2.4rem]
+                  xl:px-[4rem]
+                "
+                type="submit"
+              >
                 <span className="button-2">ثبت اطلاعات</span>
               </button>
             </div>
           </form>
 
-          <figure>
+          <figure
+            className="
+              h-auto
+              w-[18.4rem] order-first self-center
+              xl:w-[52rem] xl:order-last
+            "
+          >
             <img src={SignUpImg2} alt="illustration" />
           </figure>
         </div>
       </main>
 
-      <Footer />
+      <div className="hidden xl:block">
+        <Footer />
+      </div>
     </>
   );
 }
