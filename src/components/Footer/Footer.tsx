@@ -1,4 +1,5 @@
 import { type JSX } from "react";
+import { NavLink } from "react-router-dom";
 
 import InstaIcon from "../../assets/icons/footer/Instagram_icon.svg?react";
 import FaceBookIcon from "../../assets/icons/footer/facebook.svg?react";
@@ -13,7 +14,11 @@ import UserIcon from "../../assets/icons/user2.svg?react";
 import BrushIcon from "../../assets/icons/brush.svg?react";
 import CartIcon from "../../assets/icons/header/shopping-cart.svg?react";
 
-function Footer(): JSX.Element {
+interface FooterProps {
+  showAll?: boolean;
+}
+
+function Footer({ showAll = true }: FooterProps): JSX.Element {
   const columns = [
     {
       title: "همراه با کاستومی",
@@ -34,6 +39,29 @@ function Footer(): JSX.Element {
     },
   ];
 
+  const navbarItems = [
+    {
+      title: "خانه",
+      icon: <HomeIcon width="2.4rem" height="2.4rem" />,
+      url: "/",
+    },
+    {
+      title: "طراحی سفارشی",
+      icon: <BrushIcon width="2.4rem" height="2.4rem" />,
+      url: "#",
+    },
+    {
+      title: "سبد خرید",
+      icon: <CartIcon width="2.4rem" height="2.4rem" />,
+      url: "/cart",
+    },
+    {
+      title: "پروفایل",
+      icon: <UserIcon stroke="#FFF" width="2.4rem" height="2.4rem" />,
+      url: "/my-profile/dashboard",
+    },
+  ];
+
   return (
     <>
       <footer
@@ -42,44 +70,38 @@ function Footer(): JSX.Element {
           xl:hidden
         "
       >
-        <div className="py-[2.4rem] bg-[#641C23] flex flex-col items-center gap-[1.6rem]">
-          <p className="body-light">تماس با پشتیبانی : 0000-345-021</p>
-          <p className="body-light">پاسخگویی 24 ساعته، 7 روز هفته</p>
-          <div className="flex gap-[2.4rem]">
-            {[InstaIcon, FaceBookIcon, PinterestIcon, YoutubeIcon].map(
-              (Icon, idx) => (
-                <a
-                  key={idx}
-                  href="#"
-                  className="flex justify-center items-center h-[2.4rem] w-[2.4rem]"
-                >
-                  <Icon height="2.4rem" width="2.4rem" />
-                </a>
-              ),
-            )}
+        {showAll && (
+          <div className="py-[2.4rem] bg-[#641C23] flex flex-col items-center gap-[1.6rem]">
+            <p className="body-light">تماس با پشتیبانی : 0000-345-021</p>
+            <p className="body-light">پاسخگویی 24 ساعته، 7 روز هفته</p>
+            <div className="flex gap-[2.4rem]">
+              {[InstaIcon, FaceBookIcon, PinterestIcon, YoutubeIcon].map(
+                (Icon, idx) => (
+                  <a
+                    key={idx}
+                    href="#"
+                    className="flex justify-center items-center h-[2.4rem] w-[2.4rem]"
+                  >
+                    <Icon height="2.4rem" width="2.4rem" />
+                  </a>
+                ),
+              )}
+            </div>
+            <p className="caption-4">
+              تمام حقوق این وب‌سایت متعلق به فروشگاه آنلاین کاستومی می‌باشد
+            </p>
           </div>
-          <p className="caption-4">
-            تمام حقوق این وب‌سایت متعلق به فروشگاه آنلاین کاستومی می‌باشد
-          </p>
-        </div>
+        )}
 
         <div className="px-[5.6rem] py-[1.6rem] bg-[#A72F3B] flex items-center justify-between">
-          <div className="flex flex-col items-center">
-            <HomeIcon width="2.4rem" height="2.4rem" />
-            <span className="caption-4">خانه</span>
-          </div>
-          <div className="flex flex-col items-center">
-            <BrushIcon width="2.4rem" height="2.4rem" />
-            <span className="caption-4">طراحی سفارشی</span>
-          </div>
-          <div className="flex flex-col items-center">
-            <CartIcon width="2.4rem" height="2.4rem" />
-            <span className="caption-4">سبد خرید</span>
-          </div>
-          <div className="flex flex-col items-center">
-            <UserIcon stroke="#FFF" width="2.4rem" height="2.4rem" />
-            <span className="caption-4">پروفایل</span>
-          </div>
+          {navbarItems.map((item) => (
+            <NavLink to={item.url} end>
+              <div className="flex flex-col items-center">
+                {item.icon}
+                <span className="caption-4">{item.title}</span>
+              </div>
+            </NavLink>
+          ))}
         </div>
       </footer>
 
