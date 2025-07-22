@@ -9,7 +9,9 @@ import { toast } from "react-toastify";
 import { ProvinceOptions } from "../../enums/Province.ts";
 import contactInfoService from "../../services/contactInfoServices";
 
+import Header from "../../components/Header";
 import Stepper from "../../components/Stepper";
+import Footer from "../../components/Footer";
 import Step1 from "../../assets/icons/stepper/user.svg?react";
 import Step2 from "../../assets/icons/stepper/call.svg?react";
 import SignUpImg2 from "../../assets/images/user_sign_up_img_pg2.svg";
@@ -113,144 +115,150 @@ function UserSignUp(): JSX.Element {
   };
 
   return (
-    <main>
-      <Stepper currentStepIndex={1} steps={steps} />
+    <>
+      <Header />
 
-      <h2 className="heading-6 color-[#b95962] px-[10.8rem] mb-[3.2rem]">
-        فرم ثبت اطلاعات
-      </h2>
+      <main>
+        <Stepper currentStepIndex={1} steps={steps} />
 
-      <div className={styles["form-section"]}>
-        <form
-          className={styles.form}
-          onSubmit={handleSubmit(processContactForm)}
-        >
-          <div className={styles["form-group"]}>
-            <label htmlFor="phone" className="body-4">
-              شماره موبایل
-            </label>
-            <input
-              {...register("phone")}
-              className={`body-5 ${errors.phone ? styles["input-error"] : ""}`}
-              type="tel"
-              id="phone"
-              placeholder="مثال: 09123456789"
-              aria-invalid={errors.phone ? "true" : "false"}
-            />
-            {errors.phone && (
-              <p role="alert" className={styles["error-message"]}>
-                {errors.phone.message}
-              </p>
-            )}
-          </div>
+        <h2 className="heading-6 color-[#b95962] px-[10.8rem] mb-[3.2rem]">
+          فرم ثبت اطلاعات
+        </h2>
 
-          <div className={styles["form-group"]}>
-            <label htmlFor="home_number" className="body-4">
-              شماره تلفن (همراه با کد شهر)
-            </label>
-            <input
-              {...register("home_number")}
-              className={`body-5 ${errors.home_number ? styles["input-error"] : ""}`}
-              type="tel"
-              id="home_number"
-              placeholder="مثال: 02188776655"
-              aria-invalid={errors.home_number ? "true" : "false"}
-            />
-            {errors.home_number && (
-              <p role="alert" className={styles["error-message"]}>
-                {errors.home_number.message}
-              </p>
-            )}
-          </div>
+        <div className={styles["form-section"]}>
+          <form
+            className={styles.form}
+            onSubmit={handleSubmit(processContactForm)}
+          >
+            <div className={styles["form-group"]}>
+              <label htmlFor="phone" className="body-4">
+                شماره موبایل
+              </label>
+              <input
+                {...register("phone")}
+                className={`body-5 ${errors.phone ? styles["input-error"] : ""}`}
+                type="tel"
+                id="phone"
+                placeholder="مثال: 09123456789"
+                aria-invalid={errors.phone ? "true" : "false"}
+              />
+              {errors.phone && (
+                <p role="alert" className={styles["error-message"]}>
+                  {errors.phone.message}
+                </p>
+              )}
+            </div>
 
-          <div className={styles["form-group"]}>
-            <label htmlFor="province" className="body-4">
-              استان
-            </label>
-            <select
-              {...register("province")}
-              id="province"
-              className={`body-5 ${errors.province ? styles["input-error"] : ""}`}
-              aria-invalid={errors.province ? "true" : "false"}
-            >
-              <option value="">انتخاب کنید</option>
-              {Object.entries(ProvinceOptions).map(([key, value]) => (
-                <option key={key} value={key}>
-                  {value}
-                </option>
-              ))}
-            </select>
-            {errors.province && (
-              <p role="alert" className={styles["error-message"]}>
-                {errors.province.message}
-              </p>
-            )}
-          </div>
+            <div className={styles["form-group"]}>
+              <label htmlFor="home_number" className="body-4">
+                شماره تلفن (همراه با کد شهر)
+              </label>
+              <input
+                {...register("home_number")}
+                className={`body-5 ${errors.home_number ? styles["input-error"] : ""}`}
+                type="tel"
+                id="home_number"
+                placeholder="مثال: 02188776655"
+                aria-invalid={errors.home_number ? "true" : "false"}
+              />
+              {errors.home_number && (
+                <p role="alert" className={styles["error-message"]}>
+                  {errors.home_number.message}
+                </p>
+              )}
+            </div>
 
-          <div className={styles["form-group"]}>
-            <label htmlFor="city" className="body-4">
-              شهر
-            </label>
-            <input
-              {...register("city")}
-              id="city"
-              type="text"
-              className={`body-5 ${errors.city ? styles["input-error"] : ""}`}
-              aria-invalid={errors.city ? "true" : "false"}
-            />
-            {errors.city && (
-              <p role="alert" className={styles["error-message"]}>
-                {errors.city.message}
-              </p>
-            )}
-          </div>
+            <div className={styles["form-group"]}>
+              <label htmlFor="province" className="body-4">
+                استان
+              </label>
+              <select
+                {...register("province")}
+                id="province"
+                className={`body-5 ${errors.province ? styles["input-error"] : ""}`}
+                aria-invalid={errors.province ? "true" : "false"}
+              >
+                <option value="">انتخاب کنید</option>
+                {Object.entries(ProvinceOptions).map(([key, value]) => (
+                  <option key={key} value={key}>
+                    {value}
+                  </option>
+                ))}
+              </select>
+              {errors.province && (
+                <p role="alert" className={styles["error-message"]}>
+                  {errors.province.message}
+                </p>
+              )}
+            </div>
 
-          <div className={styles["form-group"]}>
-            <label className="body-4">کد پستی</label>
-            <input
-              {...register("postal_code")}
-              className={`body-5 ${errors.postal_code ? styles["input-error"] : ""}`}
-              type="text"
-              id="postal_code"
-              maxLength={10}
-              placeholder="مثال: 1234567890"
-              aria-invalid={errors.postal_code ? "true" : "false"}
-            />
-            {errors.postal_code && (
-              <p role="alert" className={styles["error-message"]}>
-                {errors.postal_code.message}
-              </p>
-            )}
-          </div>
+            <div className={styles["form-group"]}>
+              <label htmlFor="city" className="body-4">
+                شهر
+              </label>
+              <input
+                {...register("city")}
+                id="city"
+                type="text"
+                className={`body-5 ${errors.city ? styles["input-error"] : ""}`}
+                aria-invalid={errors.city ? "true" : "false"}
+              />
+              {errors.city && (
+                <p role="alert" className={styles["error-message"]}>
+                  {errors.city.message}
+                </p>
+              )}
+            </div>
 
-          <div className={`${styles["form-group"]} ${styles.address}`}>
-            <label className="body-4">آدرس کامل</label>
-            <input
-              {...register("address")}
-              className={`body-5 ${styles["address-textarea"]} ${errors.address ? styles["input-error"] : ""}`} // Add specific style for textarea if needed
-              id="address"
-              placeholder="خیابان، کوچه، پلاک، واحد"
-              aria-invalid={errors.address ? "true" : "false"}
-            />
-            {errors.address && (
-              <p role="alert" className={styles["error-message"]}>
-                {errors.address.message}
-              </p>
-            )}
-          </div>
+            <div className={styles["form-group"]}>
+              <label className="body-4">کد پستی</label>
+              <input
+                {...register("postal_code")}
+                className={`body-5 ${errors.postal_code ? styles["input-error"] : ""}`}
+                type="text"
+                id="postal_code"
+                maxLength={10}
+                placeholder="مثال: 1234567890"
+                aria-invalid={errors.postal_code ? "true" : "false"}
+              />
+              {errors.postal_code && (
+                <p role="alert" className={styles["error-message"]}>
+                  {errors.postal_code.message}
+                </p>
+              )}
+            </div>
 
-          <div className={styles["form-footer"]}>
-            <button className={styles["form-footer-btn"]} type="submit">
-              <span className="button-2">ثبت اطلاعات</span>
-            </button>
-          </div>
-        </form>
+            <div className={`${styles["form-group"]} ${styles.address}`}>
+              <label className="body-4">آدرس کامل</label>
+              <input
+                {...register("address")}
+                className={`body-5 ${styles["address-textarea"]} ${errors.address ? styles["input-error"] : ""}`} // Add specific style for textarea if needed
+                id="address"
+                placeholder="خیابان، کوچه، پلاک، واحد"
+                aria-invalid={errors.address ? "true" : "false"}
+              />
+              {errors.address && (
+                <p role="alert" className={styles["error-message"]}>
+                  {errors.address.message}
+                </p>
+              )}
+            </div>
 
-        <figure>
-          <img src={SignUpImg2} alt="illustration" />
-        </figure>
-      </div>
-    </main>
+            <div className={styles["form-footer"]}>
+              <button className={styles["form-footer-btn"]} type="submit">
+                <span className="button-2">ثبت اطلاعات</span>
+              </button>
+            </div>
+          </form>
+
+          <figure>
+            <img src={SignUpImg2} alt="illustration" />
+          </figure>
+        </div>
+      </main>
+
+      <Footer />
+    </>
   );
 }
 

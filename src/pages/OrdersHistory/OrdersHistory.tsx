@@ -2,7 +2,9 @@ import { type JSX, useEffect, useState } from "react";
 
 import "./OrdersHistory.css";
 
-import NavBar from "../../components/NavBar.tsx";
+import Header from "../../components/Header";
+import NavBar from "../../components/NavBar";
+import Footer from "../../components/Footer";
 import UserProfileCard from "../../components/UserProfileCard";
 import OrderItem from "../../components/OrderItem";
 
@@ -91,6 +93,7 @@ function OrdersHistory(): JSX.Element {
 
   return (
     <>
+      <Header />
       <NavBar />
 
       <main className="px-[10.8rem]">
@@ -155,6 +158,8 @@ function OrdersHistory(): JSX.Element {
           </div>
         </div>
       </main>
+
+      <Footer />
     </>
   );
 }

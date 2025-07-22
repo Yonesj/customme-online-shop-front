@@ -7,8 +7,11 @@ import { zodResolver } from "@hookform/resolvers/zod";
 
 import "./UserAccountInfo.css";
 
-import NavBar from "../../components/NavBar.tsx";
+import Header from "../../components/Header";
+import Footer from "../../components/Footer";
+import NavBar from "../../components/NavBar";
 import UserProfileCard from "../../components/UserProfileCard";
+
 import ProfileImg from "../../assets/images/prof_picture.svg";
 import customerService from "../../services/customerServices.ts";
 import userService from "../../services/userServices.ts";
@@ -212,6 +215,7 @@ function UserAccountInfo(): JSX.Element {
 
   return (
     <>
+      <Header />
       <NavBar />
 
       <main className="px-[10.8rem]">
@@ -403,6 +407,8 @@ function UserAccountInfo(): JSX.Element {
           </div>
         </div>
       </main>
+
+      <Footer />
     </>
   );
 }

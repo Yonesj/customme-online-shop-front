@@ -2,7 +2,9 @@ import { type JSX } from "react";
 
 import "./Cart.css";
 
-import NavBar from "../../components/NavBar.tsx";
+import Header from "../../components/Header";
+import Footer from "../../components/Footer";
+import NavBar from "../../components/NavBar";
 import Stepper from "../../components/Stepper";
 import CartItem from "../../components/CartItem";
 import Invoice from "../../components/Invoice";
@@ -26,6 +28,7 @@ function Cart(): JSX.Element {
 
   return (
     <>
+      <Header />
       <NavBar />
 
       <main className="px-[10.8rem]">
@@ -63,6 +66,8 @@ function Cart(): JSX.Element {
           </aside>
         </div>
       </main>
+
+      <Footer />
     </>
   );
 }

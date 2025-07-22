@@ -15,7 +15,9 @@ import styles from "./UserSignUp.module.css";
 import { EducationOptions } from "../../enums";
 import { JobOptions } from "../../enums";
 
+import Header from "../../components/Header";
 import Stepper from "../../components/Stepper";
+import Footer from "../../components/Footer";
 import Step1 from "../../assets/icons/stepper/user.svg?react";
 import Step2 from "../../assets/icons/stepper/call.svg?react";
 import CalenderIcon from "../../assets/icons/calendar.svg?react";
@@ -97,159 +99,167 @@ function UserSignUp(): JSX.Element {
   };
 
   return (
-    <main>
-      <Stepper currentStepIndex={0} steps={steps} />
+    <>
+      <Header />
 
-      <h2 className="heading-6 color-[#b95962] px-[10.8rem] mb-[3.2rem]">
-        فرم ثبت اطلاعات
-      </h2>
+      <main>
+        <Stepper currentStepIndex={0} steps={steps} />
 
-      <div className={styles["form-section"]}>
-        <form className={styles.form} onSubmit={handleSubmit(processForm)}>
-          <div className={styles["form-group"]}>
-            <label htmlFor="national_id" className="body-4">
-              کد ملی
-            </label>
-            <input
-              {...register("national_id")}
-              className="body-5"
-              type="text"
-              id="national_id"
-              aria-invalid={errors.national_id ? "true" : "false"}
-            />
-            {errors.national_id && (
-              <p role="alert" className={styles["error-message"]}>
-                {errors.national_id.message}
-              </p>
-            )}
-          </div>
+        <h2 className="heading-6 color-[#b95962] px-[10.8rem] mb-[3.2rem]">
+          فرم ثبت اطلاعات
+        </h2>
 
-          <div className={styles["form-group"]}>
-            <label className="body-4" htmlFor="full_name">
-              نام و نام خانوادگی
-            </label>
-            <input
-              {...register("full_name")}
-              className="body-5"
-              type="text"
-              id="full_name"
-              aria-invalid={errors.full_name ? "true" : "false"}
-            />
-            {errors.full_name && (
-              <p role="alert" className={styles["error-message"]}>
-                {errors.full_name.message}
-              </p>
-            )}
-          </div>
+        <div className={styles["form-section"]}>
+          <form className={styles.form} onSubmit={handleSubmit(processForm)}>
+            <div className={styles["form-group"]}>
+              <label htmlFor="national_id" className="body-4">
+                کد ملی
+              </label>
+              <input
+                {...register("national_id")}
+                className="body-5"
+                type="text"
+                id="national_id"
+                aria-invalid={errors.national_id ? "true" : "false"}
+              />
+              {errors.national_id && (
+                <p role="alert" className={styles["error-message"]}>
+                  {errors.national_id.message}
+                </p>
+              )}
+            </div>
 
-          <div className={styles["form-group"]}>
-            <label className="body-4" htmlFor="education">
-              تحصیلات (اختیاری)
-            </label>
-            <select
-              {...register("education")}
-              className="body-5"
-              id="education"
-              aria-invalid={errors.education ? "true" : "false"}
-            >
-              <option value="">انتخاب کنید</option>
-              {Object.entries(EducationOptions).map(([value, displayName]) => (
-                <option key={value} value={value}>
-                  {displayName}
-                </option>
-              ))}
-            </select>
-            {errors.education && (
-              <p role="alert" className={styles["error-message"]}>
-                {errors.education.message}
-              </p>
-            )}
-          </div>
+            <div className={styles["form-group"]}>
+              <label className="body-4" htmlFor="full_name">
+                نام و نام خانوادگی
+              </label>
+              <input
+                {...register("full_name")}
+                className="body-5"
+                type="text"
+                id="full_name"
+                aria-invalid={errors.full_name ? "true" : "false"}
+              />
+              {errors.full_name && (
+                <p role="alert" className={styles["error-message"]}>
+                  {errors.full_name.message}
+                </p>
+              )}
+            </div>
 
-          <div className={styles["form-group"]}>
-            <label className="body-4" htmlFor="job">
-              شغل (اختیاری)
-            </label>
-            <select
-              {...register("job")}
-              className="body-5"
-              id="job"
-              aria-invalid={errors.job ? "true" : "false"}
-            >
-              <option value="NONE">انتخاب کنید</option>
-              {Object.entries(JobOptions).map(([value, displayName]) => (
-                <option key={value} value={value}>
-                  {displayName}
-                </option>
-              ))}
-            </select>
-            {errors.job && (
-              <p role="alert" className={styles["error-message"]}>
-                {errors.job.message}
-              </p>
-            )}
-          </div>
+            <div className={styles["form-group"]}>
+              <label className="body-4" htmlFor="education">
+                تحصیلات (اختیاری)
+              </label>
+              <select
+                {...register("education")}
+                className="body-5"
+                id="education"
+                aria-invalid={errors.education ? "true" : "false"}
+              >
+                <option value="">انتخاب کنید</option>
+                {Object.entries(EducationOptions).map(
+                  ([value, displayName]) => (
+                    <option key={value} value={value}>
+                      {displayName}
+                    </option>
+                  ),
+                )}
+              </select>
+              {errors.education && (
+                <p role="alert" className={styles["error-message"]}>
+                  {errors.education.message}
+                </p>
+              )}
+            </div>
 
-          <div className={styles["form-group"]}>
-            <label className="body-4" htmlFor="email">
-              آدرس ایمیل
-            </label>
-            <input
-              {...register("email")}
-              className="body-5"
-              type="email"
-              id="email"
-              aria-invalid={errors.email ? "true" : "false"}
-            />
-            {errors.email && (
-              <p role="alert" className={styles["error-message"]}>
-                {errors.email.message}
-              </p>
-            )}
-          </div>
+            <div className={styles["form-group"]}>
+              <label className="body-4" htmlFor="job">
+                شغل (اختیاری)
+              </label>
+              <select
+                {...register("job")}
+                className="body-5"
+                id="job"
+                aria-invalid={errors.job ? "true" : "false"}
+              >
+                <option value="NONE">انتخاب کنید</option>
+                {Object.entries(JobOptions).map(([value, displayName]) => (
+                  <option key={value} value={value}>
+                    {displayName}
+                  </option>
+                ))}
+              </select>
+              {errors.job && (
+                <p role="alert" className={styles["error-message"]}>
+                  {errors.job.message}
+                </p>
+              )}
+            </div>
 
-          <div className={styles["form-group"]}>
-            <label className="body-4" htmlFor="password">
-              کلمه عبور
-            </label>
-            <input
-              {...register("password")}
-              className="body-5"
-              type="password"
-              id="password"
-              aria-invalid={errors.password ? "true" : "false"}
-            />
-            {errors.password && (
-              <p role="alert" className={styles["error-message"]}>
-                {errors.password.message}
-              </p>
-            )}
-          </div>
+            <div className={styles["form-group"]}>
+              <label className="body-4" htmlFor="email">
+                آدرس ایمیل
+              </label>
+              <input
+                {...register("email")}
+                className="body-5"
+                type="email"
+                id="email"
+                aria-invalid={errors.email ? "true" : "false"}
+              />
+              {errors.email && (
+                <p role="alert" className={styles["error-message"]}>
+                  {errors.email.message}
+                </p>
+              )}
+            </div>
 
-          <div className={styles["form-group"]}>
-            <label className="body-4" htmlFor="birth_date">
-              تاریخ تولد
-            </label>
-            <input
-              {...register("birth_date")}
-              className="body-5"
-              type="date"
-              id="birth_date"
-            />
-          </div>
+            <div className={styles["form-group"]}>
+              <label className="body-4" htmlFor="password">
+                کلمه عبور
+              </label>
+              <input
+                {...register("password")}
+                className="body-5"
+                type="password"
+                id="password"
+                aria-invalid={errors.password ? "true" : "false"}
+              />
+              {errors.password && (
+                <p role="alert" className={styles["error-message"]}>
+                  {errors.password.message}
+                </p>
+              )}
+            </div>
 
-          <div className={styles["form-footer"]}>
-            <button className={styles["form-footer-btn"]} type="submit">
-              <span className="button-2"> مرحله بعدی</span>
-            </button>
-          </div>
-        </form>
+            <div className={styles["form-group"]}>
+              <label className="body-4" htmlFor="birth_date">
+                تاریخ تولد
+              </label>
+              <input
+                {...register("birth_date")}
+                className="body-5"
+                type="date"
+                id="birth_date"
+              />
+            </div>
 
-        <figure>
-          <img src={SignUpImg} alt="illustration" />
-        </figure>
-      </div>
-    </main>
+            <div className={styles["form-footer"]}>
+              <button className={styles["form-footer-btn"]} type="submit">
+                <span className="button-2"> مرحله بعدی</span>
+              </button>
+            </div>
+          </form>
+
+          <figure>
+            <img src={SignUpImg} alt="illustration" />
+          </figure>
+        </div>
+      </main>
+
+      <Footer />
+    </>
   );
 }
 

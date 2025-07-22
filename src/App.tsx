@@ -15,16 +15,12 @@ import UserSignUp from "./pages/UserSignUp/UserSignUp.tsx";
 import UserSignUpPage2 from "./pages/UserSignUp/UserSignUpPage2.tsx";
 import Login from "./pages/Login";
 
-import Header from "./components/Header";
-import Footer from "./components/Footer";
 import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
   return (
     <>
       <ToastContainer position="top-center" autoClose={3000} />
-
-      <Header />
 
       <Routes>
         <Route path="/" element={<Home />} />
@@ -43,8 +39,6 @@ function App() {
 
         {/* <Route path="*" element={<NotFound />} /> */}
       </Routes>
-
-      <Footer />
     </>
   );
 }

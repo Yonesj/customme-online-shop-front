@@ -2,7 +2,9 @@ import { type JSX, useEffect, useState } from "react";
 
 import "./UserProfile.css";
 
-import NavBar from "../../components/NavBar.tsx";
+import Header from "../../components/Header";
+import NavBar from "../../components/NavBar";
+import Footer from "../../components/Footer";
 import UserProfileCard from "../../components/UserProfileCard";
 import ProductCard from "../../components/ProductCard";
 
@@ -134,6 +136,7 @@ function UserProfile(): JSX.Element {
 
   return (
     <>
+      <Header />
       <NavBar />
 
       <main className="px-[10.8rem]">
@@ -324,6 +327,8 @@ function UserProfile(): JSX.Element {
           </div>
         </div>
       </main>
+
+      <Footer />
     </>
   );
 }

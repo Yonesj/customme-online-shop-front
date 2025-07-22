@@ -2,7 +2,9 @@ import { type JSX } from "react";
 
 import "./Home.css";
 
-import NavBar from "../../components/NavBar/NavBar.tsx";
+import Header from "../../components/Header";
+import Footer from "../../components/Footer";
+import NavBar from "../../components/NavBar";
 import Hero from "../../components/Hero";
 import Category from "../../components/Category";
 import SectionHeader from "../../components/SectionHeader";
@@ -82,6 +84,7 @@ function Home(): JSX.Element {
 
   return (
     <>
+      <Header />
       <NavBar />
 
       {/*<div className="px-[3.2rem] xl:px-[10.8rem] w-[36rem] mx-auto xl:w-auto xl:mx-0">*/}
@@ -337,6 +340,8 @@ function Home(): JSX.Element {
           </div>
         </div>
       </div>
+
+      <Footer />
     </>
   );
 }

@@ -2,7 +2,9 @@ import { type JSX } from "react";
 
 import "./OtherProducts.css";
 
-import NavBar from "../../components/NavBar.tsx";
+import Header from "../../components/Header";
+import NavBar from "../../components/NavBar";
+import Footer from "../../components/Footer";
 import FilterPanel from "../../components/FilterPanel";
 import ProductCard from "../../components/ProductCard";
 import Pagination from "../../components/Pagination";
@@ -12,6 +14,7 @@ import ProductImg4 from "../../assets/images/product_card/product_img4.svg";
 function OtherProducts(): JSX.Element {
   return (
     <>
+      <Header />
       <NavBar />
 
       <main className="main-section content px-[10.8rem]">
@@ -53,6 +56,8 @@ function OtherProducts(): JSX.Element {
           <Pagination currentPage={2} />
         </div>
       </main>
+
+      <Footer />
     </>
   );
 }

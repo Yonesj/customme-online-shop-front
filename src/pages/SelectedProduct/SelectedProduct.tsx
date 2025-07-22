@@ -2,7 +2,9 @@ import { type JSX, useState } from "react";
 
 import "./SelectedProduct.css";
 
-import NavBar from "../../components/NavBar.tsx";
+import Header from "../../components/Header";
+import Footer from "../../components/Footer";
+import NavBar from "../../components/NavBar";
 import ProductDetail from "../../components/ProductDetail";
 import Comment, { type CommentProps } from "../../components/Comment";
 import CommentForm, {
@@ -57,6 +59,7 @@ function SelectedProduct(): JSX.Element {
 
   return (
     <>
+      <Header />
       <NavBar />
 
       <main className="px-[10.8rem]">
@@ -195,6 +198,8 @@ function SelectedProduct(): JSX.Element {
           onSubmit={handleNewComment}
         />
       )}
+
+      <Footer />
     </>
   );
 }
