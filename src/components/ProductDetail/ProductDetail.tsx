@@ -1,7 +1,7 @@
 import { type JSX } from "react";
 import { NavLink } from "react-router-dom";
 
-import PrimaryButton from "../PrimaryButton.tsx";
+import PrimaryButton from "../PrimaryButton";
 import SecondaryButton from "../SecondaryButton";
 
 import DownArrowIcon from "../../assets/icons/arrows/down_arrow.svg?react";

@@ -1,7 +1,8 @@
 import { type JSX } from "react";
 
 import "./Invoice.css";
-import PrimaryButton from "../PrimaryButton.tsx";
+
+import PrimaryButton from "../PrimaryButton";
 import LeftArrowIcon from "../../assets/icons/arrows/arrow-left-2.svg?react";
 
 function Invoice(): JSX.Element {
