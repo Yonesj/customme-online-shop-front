@@ -97,9 +97,9 @@ function OrdersHistory(): JSX.Element {
       <NavBar />
 
       <main className="px-[10.8rem]">
-        <h2 className="heading-3">پروفایل</h2>
+        <h2 className="heading-3 mb-[1.6rem]">پروفایل</h2>
 
-        <div className="container body-1">
+        <div className="order-history-container body-1">
           <UserProfileCard
             profilePicPath={profile.profile}
             username={profile.full_name}
